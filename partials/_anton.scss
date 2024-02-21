@@ -1,0 +1,131 @@
+$canvas:white;
+$primary-color:lightgray;
+
+$color-hover-button: lightgray;
+$color-background-button: gray;
+$color-text-button:white;
+
+$color-background-NiceToHaveBtn: gray;
+$color-text-NiceToHaveBtn: gray;
+$color-hover-NiceToHaveBtn: lightgray;
+
+$h1-fontsize:2rem;
+$h2-fontsize:1.5rem;
+$h3-fontsize:1rem;
+$h4-fontsize:0.8rem;
+$p-fontsize:0.7rem;
+
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+.header{
+    width: 100vw;
+    height: 10vh;
+    background-color: red;
+}
+
+.habit-page-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.habit-option-container{
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+    gap: 16px;
+    padding: 12px;
+    a{
+        text-decoration: none;
+        color: black;
+    }
+    button{
+        padding: 8px;
+        border-radius: 8px;
+        width: 100px;
+        border: none;
+        background-color: $color-background-button;
+        &:hover{
+            background-color: $color-hover-button;
+        }
+    }
+    select{
+        width: fit-content;
+    }
+}
+
+.habit-container{
+    width: 80vw;
+    height: fit-content;
+    background-color: $primary-color;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+    padding: 24px;
+}
+
+.temp{
+    background-color: white;
+    width: 600px;
+    height: fit-content;
+    padding: 12px;
+    border-radius: 4px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    h2::first-letter{
+        text-transform: capitalize;
+    }
+    .delete-btn{
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 10px;
+    }
+    .edit-btn{
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        margin: 10px;
+    }
+}
+
+.streak-container{
+    display: flex;
+    gap: 4px;
+}
+
+.add-habit-window{
+    width: 250px;
+    height: fit-content;
+    padding: 12px;
+    background-color: olive;
+    display: none;
+    flex-direction: column;
+    gap: 16px;
+    position: absolute;
+    z-index: 100;
+    margin-top: 200px;
+    box-shadow: 0px 0px 300px 120px gray
+}
+
+.close{
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px;
+}
+
+.habit-inputs{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
