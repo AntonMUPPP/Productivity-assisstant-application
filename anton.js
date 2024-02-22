@@ -1,4 +1,4 @@
-let habits = JSON.parse(localStorage.getItem('habits')) || [];
+let habits = JSON.parse(localStorage.getItem("habits")) || []
 
 function hideHabitWindow(){
     let window = document.querySelector(".add-habit-window")
@@ -21,18 +21,18 @@ function renderHabits() {
             <button class="delete-btn" onclick="deleteHabit('${habit.id}')">Delete</button>
             <h2>${habit.title}</h2>
             <div class="streak-container">
-                <p>streak</p><button>-</button><p>0</p><button>+</button><button>Reset streak</button>
+                <p>Streak:</p><button>-</button><p class="streak">0</p><button>+</button><button>Reset streak</button>
             </div>
             <p>Priority: ${habit.prio}</p>
             <button class="edit-btn">Edit</button>`
 
-        habitElement.setAttribute('id', habit.id)
+        habitElement.setAttribute("id", habit.id)
 
         habitContainer.appendChild(habitElement)
     })
 }
 
-window.onload = renderHabits
+window.onload = renderHabits()
 
 function addHabit(){
     const habitTitleInput = document.querySelector("#habittitle")
@@ -46,20 +46,21 @@ function addHabit(){
         alert("Please enter a title for the habit.")
         return
     }
+    const habitId = "habit_" + Date.now()
 
     let habitObj = {
         title: habitTitle,
-        prio: habitPrio
+        prio: habitPrio,
+        id: habitId
     }
 
-    const habitId = "habit_" + Date.now()
     console.log("created id:" + habitId)
 
     habit.innerHTML = `
         <button class="delete-btn" onclick="deleteHabit('${habitId}')">Delete</button>
         <h2>${habitObj.title}</h2>
         <div class="streak-container">
-            <p>Streak:</p><button>-</button><p>0</p><button>+</button><button>Reset streak</button>
+            <p>Streak:</p><button>-</button><p class="streak">${0}</p><button onclick="addStreak('${habitId}')">+</button><button>Reset streak</button>
         </div>
         <p>Priority: ${habitObj.prio}</p>
         <button class="edit-btn">Edit</button>`
@@ -69,14 +70,12 @@ function addHabit(){
     const habitContainer = document.querySelector(".habit-container")
     habitContainer.append(habit)
 
-    console.log(habitObj)
     habits.push(habitObj)
-    console.log(habits)
 
     habitTitleInput.value = ""
     window.style.display = "none"
 
-    localStorage.setItem('habits', JSON.stringify(habits))
+    localStorage.setItem("habits", JSON.stringify(habits))
 }
 
 function deleteHabit(habitId) {
@@ -89,7 +88,14 @@ function deleteHabit(habitId) {
 
         if (index !== -1) {
             habits.splice(index, 1)
-            localStorage.setItem('habits', JSON.stringify(habits))
+            localStorage.setItem("habits", JSON.stringify(habits))
         }
     }
+}
+
+function addStreak(habitId){
+    const habitElement = document.getElementById(habitId)
+    let streakText = habitElement.querySelector(".streak")
+    
+    console.log(habitElement.id)
 }
