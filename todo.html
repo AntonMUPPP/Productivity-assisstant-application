@@ -7,17 +7,17 @@
     <link rel="stylesheet" href="jenia.css" />
     <script src="jenia.js" defer></script>
   </head>
-  <header>
-    <div class="header-todo"></div>
-  </header>
   <body>
+    <header>
+      <div class="header-todo"></div>
+    </header>
     <main>
       <div id="todo-page-container">
         <div class="my-todos">
           <a href="">Back</a>
-          <button class="close" onclick="hideToDoVindow()">Add ToDo</button>
-          <p>Felter by:</p>
-          <label for="status">Satatus: complete</label>
+          <button class="add-todo-btn">Add ToDo</button>
+          <p>Filter by:</p>
+          <label for="status">Status: complete</label>
           <input type="checkbox" name="status" id="status" />
           <div>
             <p>Category:</p>
@@ -37,7 +37,7 @@
             <input type="checkbox" name="leisure" id="leisure" />
           </div>
           <div>
-            <select name="sortering" id="sortering">
+            <select name="sorting" id="sorting">
               <option value="closestday">Closest deadline</option>
               <option value="longestday">Longest deadline</option>
               <option value="shortesttime">Shortest time</option>
@@ -45,16 +45,16 @@
             </select>
           </div>
           <div class="add-todo-window">
-            <button class="close" onclick="hideToDoVindow()">X</button>
-            <h2>Add ToDo</h2>
+            <button class="close">X</button>
+            <h3>Add ToDo</h3>
             <form action="" id="todoForm">
               <div class="todo-inputs">
                 <div>
-                  <label for="todotitile">ToDo</label>
+                  <label for="todotitle">ToDo</label>
                   <input
                     type="text"
-                    name="todotitile"
-                    id="todotitile"
+                    name="todotitle"
+                    id="todotitle"
                     placeholder="Title"
                   />
                 </div>
@@ -87,23 +87,9 @@
                 </div>
               </div>
             </form>
-            <button onclick="saveTodo()" id="savetodo">Save</button>
+            <button class="save-todo-btn" id="savetodo">Save</button>
           </div>
-          <div class="todo-container">
-            <div class="temp">
-              <h3>Title:</h3>
-              <p>Description</p>
-              <div class="timing">
-                <p>Deadlile:</p>
-                <p>Time:</p>
-              </div>
-              <p>Category</p>
-            </div>
-            <div class="todo-btn">
-              <button class="complete-todo">Complete</button>
-              <button class="edit-todo">Edit</button>
-            </div>
-          </div>
+          <div class="todo-container"></div>
         </div>
       </div>
     </main>
