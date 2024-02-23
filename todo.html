@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo List</title>
+    <link rel="stylesheet" href="jenia.css" />
+    <script src="jenia.js" defer></script>
+  </head>
+  <header>
+    <div class="header-todo"></div>
+  </header>
+  <body>
+    <main>
+      <div id="todo-page-container">
+        <div class="my-todos">
+          <a href="">Back</a>
+          <button class="close" onclick="hideToDoVindow()">Add ToDo</button>
+          <p>Felter by:</p>
+          <label for="status">Satatus: complete</label>
+          <input type="checkbox" name="status" id="status" />
+          <div>
+            <p>Category:</p>
+            <label for="health">Health</label>
+            <input type="checkbox" name="health" id="health" />
+
+            <label for="home">Home</label>
+            <input type="checkbox" name="home" id="home" />
+
+            <label for="work">Work</label>
+            <input type="checkbox" name="work" id="work" />
+
+            <label for="family">Family</label>
+            <input type="checkbox" name="family" id="family" />
+
+            <label for="leisure">Leisure</label>
+            <input type="checkbox" name="leisure" id="leisure" />
+          </div>
+          <div>
+            <select name="sortering" id="sortering">
+              <option value="closestday">Closest deadline</option>
+              <option value="longestday">Longest deadline</option>
+              <option value="shortesttime">Shortest time</option>
+              <option value="longesttime">Longest time</option>
+            </select>
+          </div>
+          <div class="add-todo-window">
+            <button class="close" onclick="hideToDoVindow()">X</button>
+            <h2>Add ToDo</h2>
+            <form action="" id="todoForm">
+              <div class="todo-inputs">
+                <div>
+                  <label for="todotitile">ToDo</label>
+                  <input
+                    type="text"
+                    name="todotitile"
+                    id="todotitile"
+                    placeholder="Title"
+                  />
+                </div>
+                <div>
+                  <label for="tododescription">Description</label>
+                  <input
+                    type="text"
+                    name="tododescription"
+                    id="tododescription"
+                    placeholder="Description"
+                  />
+                </div>
+                <div>
+                  <label for="category">Category</label>
+                  <select name="listcategory" id="listcategory">
+                    <option value="health">Health</option>
+                    <option value="home">Home</option>
+                    <option value="work">Work</option>
+                    <option value="leisure">Leisure</option>
+                    <option value="family">Family</option>
+                  </select>
+                </div>
+                <div class="date">
+                  <label for="deadline">Deadlile</label>
+                  <input type="date" name="date" id="date" />
+                </div>
+                <div class="time">
+                  <label for="time">Time</label>
+                  <input type="time" name="time" id="time" />
+                </div>
+              </div>
+            </form>
+            <button onclick="saveTodo()" id="savetodo">Save</button>
+          </div>
+          <div class="todo-container">
+            <div class="temp">
+              <h3>Title:</h3>
+              <p>Description</p>
+              <div class="timing">
+                <p>Deadlile:</p>
+                <p>Time:</p>
+              </div>
+              <p>Category</p>
+            </div>
+            <div class="todo-btn">
+              <button class="complete-todo">Complete</button>
+              <button class="edit-todo">Edit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
