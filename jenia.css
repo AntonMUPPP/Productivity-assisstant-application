@@ -1,0 +1,166 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+.my-todos {
+    width: 80%;
+    /* ширина елементу */
+    max-width: 600px;
+    /* максимальна ширина */
+    margin: 0 auto;
+    /* автоматичний відступ по горизонталі, щоб розмістити по центру */
+    padding: 20px;
+    /* відступи для кращого відображення */
+    background-color: #f8f9fa;
+    /* колір фону */
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+}
+
+a {
+    color: #86480a;
+    /* колір тексту */
+    text-decoration: none;
+    /* відсутність підкреслення */
+    margin-right: 10px;
+    /* відступ справа */
+}
+
+a:hover {
+    text-decoration: underline;
+    /* підкреслення при наведенні */
+}
+
+main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.add-todo-btn {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.add-todo-window {
+    max-width: 400px;
+    /* Зменшуємо максимальну ширину вікна */
+    margin: 20px auto;
+    /* Центруємо вікно по горизонталі */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: none;
+    /* Початково ховаємо вікно */
+    position: relative;
+}
+
+.add-todo-window .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: #999;
+}
+
+.add-todo-window label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.add-todo-window input[type="text"],
+.add-todo-window select {
+    width: calc(100% - 12px);
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.add-todo-window .date,
+.add-todo-window .time {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.add-todo-window .todo-inputs div {
+    margin-bottom: 15px;
+}
+
+.add-todo-window .todo-actions {
+    margin-top: 15px;
+}
+
+.todo-container {
+    margin-top: 20px;
+    max-width: 500px;
+}
+
+.todo-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.todo-title {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.todo-actions button {
+    margin-left: 5px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.complete-todo {
+    background-color: #28a745;
+}
+
+.edit-todo-btn {
+    background-color: #007bff;
+}
+
+.delete-todo-btn {
+    background-color: #dc3545;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: red;
+}
+
+/* Зміни для мобільних пристроїв */
+@media only screen and (max-width: 600px) {
+    .container {
+        max-width: 100%;
+    }
+}
