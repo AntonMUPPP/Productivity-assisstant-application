@@ -47,6 +47,7 @@
   width: 80vw;
   height: -moz-fit-content;
   height: fit-content;
+  min-height: 60vh;
   background-color: lightgray;
   display: flex;
   flex-direction: column;
@@ -56,7 +57,7 @@
   padding: 24px;
 }
 
-.temp {
+.habit {
   background-color: white;
   width: 600px;
   height: -moz-fit-content;
@@ -68,16 +69,16 @@
   flex-direction: column;
   gap: 24px;
 }
-.temp h2::first-letter {
+.habit h2::first-letter {
   text-transform: capitalize;
 }
-.temp .delete-btn {
+.habit .delete-btn {
   position: absolute;
   top: 0;
   right: 0;
   margin: 10px;
 }
-.temp .edit-btn {
+.habit .edit-btn {
   position: absolute;
   bottom: 0;
   right: 0;

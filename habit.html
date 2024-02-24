@@ -15,7 +15,7 @@
         <div class="habit-page-container">
             <div class="habit-option-container">
                 <a href="#"><span><</span> Back</a>
-                <button onclick="hideHabitWindow()">Add Habit</button>
+                <button onclick="toggleHabitWindow()">Add Habit</button>
                 <p>Filter by priority:</p>
                 <div>
                     <label for="low">Low</label>
@@ -33,7 +33,7 @@
                 </select>
             </div>
             <div class="add-habit-window">
-                <button class="close" onclick="hideHabitWindow()">X</button>
+                <button class="close" onclick="toggleHabitWindow()">X</button>
                 <h2>Add habit</h2>
                 <form id="habitform">
                     <div class="habit-inputs">
@@ -51,7 +51,7 @@
                         </div>
                     </div>
                 </form>
-                <button onclick="addHabit()">Add Habit</button>
+                <button id="addHabitButton" onclick="addHabit()">Add Habit</button>
             </div>
             <div class="habit-container">
                 <div class="temp">

@@ -62,6 +62,7 @@ $p-fontsize:0.7rem;
 .habit-container{
     width: 80vw;
     height: fit-content;
+    min-height: 60vh;
     background-color: $primary-color;
     display: flex;
     flex-direction: column;
@@ -71,7 +72,7 @@ $p-fontsize:0.7rem;
     padding: 24px;
 }
 
-.temp{
+.habit{
     background-color: white;
     width: 600px;
     height: fit-content;
