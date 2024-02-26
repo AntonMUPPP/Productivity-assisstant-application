@@ -1,16 +1,19 @@
+@import "partials/variables";
+@import "partials/mixins";
 @import "partials/anton";
 @import "partials/Jenia";
-@import "partials/mixins";
 @import "partials/shishi";
-@import "partials/variables";
 
 
 
 body{
     // border: 2px solid red;
-    // background:rgb(140, 140, 140);s
+    // background:rgb(140, 140, 140);
+    display: flex;
+    flex-direction: column;
     margin: auto;
     min-height: 100vh;
     width: 100%;
     font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
 }
