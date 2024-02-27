@@ -99,15 +99,30 @@
                     <label for="deadline">Deadline</label>
                     <input type="date" name="date" id="date" />
                   </div>
-                  <div class="time">
-                    <label for="time">Time</label>
-                    <input type="time" name="time" id="time" />
+                  <div class="timeestimate">
+                    <label for="time">Time estimate:</label>
+                    <label for="day">days</label>
+                    <input type="number" name="day" id="time" />
+                    <label for="hour">hours</label>
+                    <input type="number" name="hour" id="time" />
+                    <label for="minute">minutes</label>
+                    <input type="number" name="minute" id="time" />
                   </div>
                 </div>
               </form>
               <button class="save-todo-btn" id="savetodo">Save</button>
             </div>
-            <div class="todo-container"></div>
+            <div class="todo-container">
+              <!-- Кожен елемент todo з віконцем для галочки "Complete" -->
+              <div class="todo-item">
+                <div class="todo-title">Title</div>
+                <!-- Решта полів todo -->
+                <div class="complete-checkbox">
+                  <label> <input type="checkbox" /> Complete </label>
+                </div>
+                <!-- Кнопки для редагування та видалення -->
+              </div>
+            </div>
           </div>
         </div>
       </div>
