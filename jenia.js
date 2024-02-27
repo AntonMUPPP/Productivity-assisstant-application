@@ -31,18 +31,14 @@ document.addEventListener("DOMContentLoaded", function () {
     closeButton.addEventListener("click", hideAddTodoWindow);
   }
 
-  // Обробник події для кнопки "Sort"
-  const sortButton = document.getElementById("sort-btn");
-  if (sortButton) {
-    sortButton.addEventListener("click", sortTodos);
-  }
-
   function saveTodo() {
     const todoTitleInput = document.querySelector("#todotitle");
     const todoDescriptionInput = document.querySelector("#tododescription");
     const category = document.querySelector("#listcategory").value;
     const deadline = document.querySelector("#date").value;
-    const time = document.querySelector("#time").value;
+    const dayInput = document.querySelector("input[name='day']");
+    const hourInput = document.querySelector("input[name='hour']");
+    const minuteInput = document.querySelector("input[name='minute']");
 
     const todoTitle = todoTitleInput.value.trim();
     const todoDescription = todoDescriptionInput.value.trim();
@@ -81,7 +77,11 @@ document.addEventListener("DOMContentLoaded", function () {
         title: todoTitle,
         description: todoDescription,
         deadline: deadline,
-        time: time,
+        time: {
+          day: parseInt(dayInput.value), // Перетворюємо рядок у число
+          hour: parseInt(hourInput.value),
+          minute: parseInt(minuteInput.value),
+        },
         category: category,
       };
 
@@ -101,16 +101,21 @@ document.addEventListener("DOMContentLoaded", function () {
     todoItem.id = `todo-${todo.id}`; // Ідентифікуємо елемент за id
     todoItem.classList.add("todo-item");
     todoItem.innerHTML = `
-      <div class="todo-title">${todo.title}</div>
-      <div class="todo-description">${todo.description}</div>
-      <div class="todo-deadline">${todo.deadline}</div>
-      <div class="todo-time">${todo.time}</div>
-      <div class="todo-category">${todo.category}</div>
-      <div class="todo-actions">
-        <button class="edit-todo-btn">Edit</button>
-        <button class="complete-todo-btn">Complete</button>
-      </div>
-    `;
+          <div class="todo-title">${todo.title}</div>
+          <div class="todo-description">${todo.description}</div>
+          <div class="todo-deadline">Deadline: ${todo.deadline}</div>
+          <div class="todo-time">Time estimate: ${todo.time.day} days, ${todo.time.hour} hours, ${todo.time.minute} minutes</div>
+          <div class="todo-category">Category: ${todo.category}</div>
+          <div class="complete-checkbox">
+              <label>
+                  Complete <input type="checkbox"> 
+              </label>
+          </div>
+          <div class="todo-actions">
+              <button class="edit-todo-btn">Edit</button>
+              <button class="delete-todo-btn">Delete</button>
+          </div>
+      `;
 
     todoListContainer.appendChild(todoItem);
 
@@ -127,9 +132,9 @@ document.addEventListener("DOMContentLoaded", function () {
       document.querySelector("#time").value = todo.time;
     });
 
-    // Додати обробник події для кнопки "Complete" в новоствореному елементі
-    const completeButton = todoItem.querySelector(".complete-todo-btn");
-    completeButton.addEventListener("click", function () {
+    // Додати обробник події для кнопки "delete" в новоствореному елементі
+    const deleteButton = todoItem.querySelector(".delete-todo-btn");
+    deleteButton.addEventListener("click", function () {
       const index = todos.indexOf(todo);
       if (index > -1) {
         todos.splice(index, 1);
@@ -137,28 +142,6 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.setItem("todos", JSON.stringify(todos));
       }
     });
-  }
-
-  function sortTodos() {
-    const sortingMethod = document.getElementById("sorting").value;
-    switch (sortingMethod) {
-      case "closestday":
-        todos.sort((a, b) => new Date(a.deadline) - new Date(b.deadline));
-        break;
-      case "longestday":
-        todos.sort((a, b) => new Date(b.deadline) - new Date(a.deadline));
-        break;
-      case "shortesttime":
-        todos.sort((a, b) => new Date(a.time) - new Date(b.time));
-        break;
-      case "longesttime":
-        todos.sort((a, b) => new Date(b.time) - new Date(a.time));
-        break;
-      default:
-        break;
-    }
-    renderTodos();
-    localStorage.setItem("todos", JSON.stringify(todos));
   }
 
   function renderTodos() {

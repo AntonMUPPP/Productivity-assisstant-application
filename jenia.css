@@ -93,10 +93,15 @@ main {
     border-radius: 3px;
 }
 
-.add-todo-window .date,
-.add-todo-window .time {
+.add-todo-window .date {
     display: inline-block;
     margin-right: 10px;
+}
+
+.add-todo-window #time {
+    display: inline-block;
+    margin-right: 10px;
+    width: 3rem;
 }
 
 .add-todo-window .todo-inputs div {
