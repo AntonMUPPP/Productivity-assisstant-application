@@ -1,5 +1,9 @@
 //#region Antons code
 let habits = JSON.parse(localStorage.getItem("habits")) || []
+let filteredHabits = []
+
+window.onload = renderFilteredHabits(habits)      //Just renders the habits everytime the page gets reloaded
+window.onload = clearCheckboxes()       //Resets the checkboxes on reload of the page
 
 function toggleHabitWindow() {
     const window = document.querySelector(".add-habit-window");
@@ -18,12 +22,11 @@ function toggleHabitWindow() {
     }
 }
 
-//Function to render the habits in the DOM
-function renderHabits() {
+function renderFilteredHabits(filteredHabitsArr){
     const habitContainer = document.querySelector(".habit-container")
-    habitContainer.innerHTML = ""       //Sets it to an empty string so it doesnt create duplicates
+    habitContainer.innerHTML = ""
 
-    habits.forEach(habit => {
+    filteredHabitsArr.forEach(habit => {
         const habitElement = document.createElement("div")      //Creates the habit element for each in the array
         habitElement.classList.add("habit")     //Gives it the proper class
 
@@ -45,14 +48,12 @@ function renderHabits() {
     })
 }
 
-window.onload = renderHabits()      //Just renders the habits everytime the page gets reloaded
-
 function addHabit() {
     const habitTitleInput = document.querySelector("#habittitle")
     const habitTitle = habitTitleInput.value.trim()
     const habitPrio = document.querySelector("#priorityselect").value
     const window = document.querySelector(".add-habit-window")
-    const habitId = habitTitleInput.dataset.editingId || "habit_" + Date.now()  //This is to check if you are editing an existing habit
+    const habitId = habitTitleInput.dataset.editingId || "habit_" + Date.now()
 
     //Small check to see that the user actually typed a title
     if (habitTitle === "") {
@@ -76,7 +77,7 @@ function addHabit() {
         habits.push(habitObj)
     }
 
-    renderHabits()
+    renderFilteredHabits(habits)
 
     //Resets the input field and hides the add habit menu
     habitTitleInput.value = ""
@@ -113,26 +114,29 @@ function deleteHabit(habitId) {
 
 function increaseStreak(habitId) {
     const habit = habits.find(habit => habit.id === habitId)
+    const streakP = document.querySelector(`#${habitId} > div > .streak`)
     if (habit) {
         habit.streak = (habit.streak) + 1
-        renderHabits()      //Re-renders the list with updated values
+        streakP.innerText = habit.streak
         localStorage.setItem("habits", JSON.stringify(habits))      //Updates the value in local storage
     }
 }
 
 function decreaseStreak(habitId) {
     const habit = habits.find(habit => habit.id === habitId)
+    const streakP = document.querySelector(`#${habitId} > div > .streak`)
     if (habit && habit.streak && habit.streak > 0) {
         habit.streak -= 1
-        renderHabits()      //Re-renders the list with updated values
+        streakP.innerText = habit.streak
         localStorage.setItem("habits", JSON.stringify(habits))      //Updates the value in local storage
     }
 }
 
 function resetStreak(habitId){
     const habit = habits.find(habit => habit.id === habitId)
+    const streakP = document.querySelector(`#${habitId} > div > .streak`)
     habit.streak = 0
-    renderHabits()      //Re-renders the list with updated values
+    streakP.innerText = habit.streak
     localStorage.setItem("habits", JSON.stringify(habits))      //Updates the value in local storage
 }
 
@@ -152,4 +156,35 @@ function editHabit(id, title, prio) {
 
     habitTitleInput.dataset.editingId = id      //Sets a flag that indicates that we want to edit an existing habit
 }
+
+function filterHabits(){
+    let pickedPriority = []
+    filteredHabits = []
+    const selectedPrio = document.querySelectorAll("[name='priority']:checked")
+
+    selectedPrio.forEach((checkbox) => {
+        pickedPriority.push(checkbox.value)  
+    })
+    console.log(pickedPriority)
+
+    if(pickedPriority.length === 0){
+        renderFilteredHabits(habits)
+        return
+    }
+
+    habits.forEach(habit => {
+        if (pickedPriority.includes(habit.prio)) {
+            filteredHabits.push(habit)
+            renderFilteredHabits(filteredHabits)
+        }
+    })
+}
+
+function clearCheckboxes(){
+    const checkboxes = document.querySelectorAll("[name='priority']")
+    checkboxes.forEach(checkbox => {
+        checkbox.checked = false
+    });
+}
+
 //#endregion

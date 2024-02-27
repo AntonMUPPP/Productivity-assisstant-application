@@ -19,12 +19,13 @@
                 <p>Filter by priority:</p>
                 <div>
                     <label for="low">Low</label>
-                    <input type="checkbox" name="priority" id="low">
+                    <input type="checkbox" name="priority" id="low" value="low">
                     <label for="medium">Medium</label>
-                    <input type="checkbox" name="priority" id="medium">
+                    <input type="checkbox" name="priority" id="medium" value="medium">
                     <label for="high">High</label>
-                    <input type="checkbox" name="priority" id="high">
+                    <input type="checkbox" name="priority" id="high" value="high">
                 </div>
+                <button onclick="filterHabits()">Filter</button>
                 <select name="sort" id="">
                     <option value="">Habit streak - Ascending</option>
                     <option value="">Habit streak - Descending</option>
@@ -44,9 +45,9 @@
                         <div>
                             <label for="priorityselect">Priority:</label>
                             <select name="priorityselect" id="priorityselect">
-                                <option value="Low">Low</option>
-                                <option value="Medium">Medium</option>
-                                <option value="High">High</option>
+                                <option value="low">Low</option>
+                                <option value="medium">Medium</option>
+                                <option value="high">High</option>
                             </select>
                         </div>
                     </div>
@@ -54,15 +55,7 @@
                 <button id="addHabitButton" onclick="addHabit()">Add Habit</button>
             </div>
             <div class="habit-container">
-                <div class="temp">
-                    <button class="delete-btn">Delete</button>
-                    <h2>Title</h2>
-                    <div class="streak-container">
-                        <p>streak</p><button>-</button><p>0</p><button>+</button><button>Reset streak</button>
-                    </div>
-                    <p>priority</p>
-                    <button class="edit-btn">Edit</button>
-                </div>
+
             </div>
         </div>
     </main>

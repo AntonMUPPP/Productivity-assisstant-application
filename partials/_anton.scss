@@ -1,3 +1,5 @@
+/* @import ".partials/_variables"; */
+
 $canvas:white;
 $primary-color:lightgray;
 
@@ -70,6 +72,7 @@ $p-fontsize:0.7rem;
     gap: 12px;
     position: relative;
     padding: 24px;
+    margin-bottom: 24px;
 }
 
 .habit{
