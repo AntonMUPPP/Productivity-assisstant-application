@@ -6,10 +6,10 @@ window.onload = renderFilteredHabits(habits)      //Just renders the habits ever
 window.onload = clearCheckboxes()       //Resets the checkboxes on reload of the page
 
 function toggleHabitWindow() {
-    const window = document.querySelector(".add-habit-window");
-    const addButton = document.querySelector("#addHabitButton");
-    const addHabitHeading = document.querySelector(".add-habit-window h2");
-    const habitTitleInput = document.querySelector("#habittitle");
+    const window = document.querySelector(".add-habit-window")
+    const addButton = document.querySelector("#addHabitButton")
+    const addHabitHeading = document.querySelector(".add-habit-window h2")
+    const habitTitleInput = document.querySelector("#habittitle")
 
     if (window.style.display === "flex") {
         window.style.display = "none"
@@ -160,31 +160,58 @@ function editHabit(id, title, prio) {
 function filterHabits(){
     let pickedPriority = []
     filteredHabits = []
-    const selectedPrio = document.querySelectorAll("[name='priority']:checked")
+    const selectedPrio = document.querySelectorAll("[name='priority']:checked")     //Gets all the boxes that the user selected
 
     selectedPrio.forEach((checkbox) => {
-        pickedPriority.push(checkbox.value)  
+        pickedPriority.push(checkbox.value)     //Pushes the checked boxes to a new array
     })
-    console.log(pickedPriority)
 
-    if(pickedPriority.length === 0){
+    if(pickedPriority.length === 0){        //If no boxes are checked then just returns the full list of habits
         renderFilteredHabits(habits)
         return
     }
 
-    habits.forEach(habit => {
+    habits.forEach(habit => {       //Takes the habit array and checks every objects .prio value and compares it to the values in the pickedPriority array
         if (pickedPriority.includes(habit.prio)) {
-            filteredHabits.push(habit)
-            renderFilteredHabits(filteredHabits)
+            filteredHabits.push(habit)      //Pushes the ones that fit
+            renderFilteredHabits(filteredHabits)        //Renders the new array
         }
     })
 }
 
-function clearCheckboxes(){
+function clearCheckboxes(){     //Function to clear the checkboxes when the page reloads
     const checkboxes = document.querySelectorAll("[name='priority']")
     checkboxes.forEach(checkbox => {
         checkbox.checked = false
-    });
+    })
+}
+
+function sortHabits() {
+    const sortSelect = document.getElementById("sortSelect")
+    const sortBy = sortSelect.value
+    switch (sortBy) {       //Switch statement instead of a bunch of if/else for performance
+        case "streakAsc":
+            habits.sort((a, b) => a.streak - b.streak)      //Sorts the streaks in ascending order
+            break
+        case "streakDesc":
+            habits.sort((a, b) => b.streak - a.streak)      //Sorts the streaks in descending order
+            break
+        case "priorityAsc":
+            habits.sort((a, b) => {
+                const priorityOrder = { "low": 0, "medium": 1, "high": 2 }      //Creates an object to give the priority options actual value so they can be sorted
+                return priorityOrder[a.prio] - priorityOrder[b.prio]        //Sorts the priorities in ascending order
+            })
+            break
+        case "priorityDesc":
+            habits.sort((a, b) => {
+                const priorityOrder = { "low": 0, "medium": 1, "high": 2 }      //Creates an object to give the priority options actual value so they can be sorted
+                return priorityOrder[b.prio] - priorityOrder[a.prio]        //Sorts the priorities in descending order
+            })
+            break
+        default:
+            break
+    }
+    renderFilteredHabits(habits)        //Renders all the habits
 }
 
 //#endregion

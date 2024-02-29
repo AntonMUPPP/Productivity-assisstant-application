@@ -26,11 +26,11 @@
                     <input type="checkbox" name="priority" id="high" value="high">
                 </div>
                 <button onclick="filterHabits()">Filter</button>
-                <select name="sort" id="">
-                    <option value="">Habit streak - Ascending</option>
-                    <option value="">Habit streak - Descending</option>
-                    <option value="">Priority - Ascending</option>
-                    <option value="">Priority - Descending</option>
+                <select name="sort" id="sortSelect" onchange="sortHabits()">
+                    <option value="streakAsc">Habit streak - Ascending</option>
+                    <option value="streakDesc">Habit streak - Descending</option>
+                    <option value="priorityAsc">Priority - Ascending</option>
+                    <option value="priorityDesc">Priority - Descending</option>
                 </select>
             </div>
             <div class="add-habit-window">
