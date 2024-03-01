@@ -1,8 +1,9 @@
+  /* ----- Function to fetch weather data from the API ----- */
  const apiKey = "c0a747ea68752bc62e09f4fce7115f76";
  const city = "Stockholm";
  const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
- // Function to fetch weather data from the API
+
  let fetchWeather = async () => {
    try {
      const response = await fetch(apiUrl);
@@ -54,22 +55,152 @@
  fetchWeather();
 
 
-const login = document.querySelector('#login');
+
+
+
+/* ----- Function to switch login and register ----- */
+//all of the variables
+ const login = document.querySelector('#login');
  const newAccount= document.querySelector('#newAccount');
- const register = document.querySelector('#register');
- const signin = document.querySelector('#signin')
+ const registerBtn = document.querySelector('#registerBtn');
+ const signinBtn = document.querySelector('#signinBtn');
+ const usernameInput = document.querySelector('#usernameInput');
+ const passwordInput = document.querySelector('#passwordInput');
+ const main = document.querySelector('#main')
+ const loginDiv = document.querySelector('.main-inloggning');
+ const inloggdeDiv = document.querySelector('.main-inloggde');
+ const userInfo = document.querySelector('.user_info');
+ const profileName = document.querySelector('#profileName');
+ const signOutBtn = document.querySelector('#signOutBtn');
+ const apiGreating = document.querySelector('.apiGreating');
+ const apiQuote = document.querySelector('.apiQuote');
+//  let currentUser = null;
+//  let isLoggedIn = false;
 
  newAccount.addEventListener('click', ()=>{
   login.style.borderBottom = "none";
-  signin.style.display = 'none';
-  register.style.display = "inline-block";
+  newAccount.style.borderBottom = '2px solid red';
+  signinBtn.style.display = 'none';
+  registerBtn.style.display = "inline-block";
  })
 
  login.addEventListener('click', ()=>{
   login.style.borderBottom = "2px solid red";
-  signin.style.display = 'inline-block';
-  register.style.display = "none";
+  newAccount.style.borderBottom = 'none';
+  signinBtn.style.display = 'inline-block';
+  registerBtn.style.display = "none";
  })
 
 
 
+
+/* ----- Function to register user ----- */
+
+//a function to check if username and password match
+let checkCredentials = (username, password) => {
+  const savedPassword = localStorage.getItem(username);
+  if (savedPassword === password) {
+    return true;
+  } else {
+    return false; 
+  }
+}
+
+
+let isUsernameAvailable = () => {
+  const username = usernameInput.value;
+  let keysArray = [];
+  //Loop through all localStorage keys
+  for (var i = 0; i < localStorage.length; i++) {
+    var key = localStorage.key(i);
+    keysArray.push(key);
+  }
+  // console.log(keysArray);
+  //to check if the username is already taken.
+  if (keysArray.includes(username)){
+    return true
+  }
+}
+
+registerBtn.addEventListener('click',()=>{
+  const username = usernameInput.value;
+  const password = passwordInput.value
+
+  //to check if the username inputs are empty.
+if (username.trim() === ''){
+  alert(`Please enter your username`)
+  return;
+}
+//to check if the username is already taken.
+if (isUsernameAvailable(username)) {
+  alert(`Username is already taken!`);
+  usernameInput.value = "";
+  passwordInput.value = "";
+  // to check if the password input is empty.
+}else if (password.trim() === '') {
+  alert(`Please enter your password.`);
+}else {
+  localStorage.setItem(username, password);
+  alert (`Welcome! Your Account has been Created!`);
+}
+});
+
+
+/* ----- Function to log in ----- */
+signinBtn.addEventListener('click',()=>{
+  const username = usernameInput.value;
+  const password = passwordInput.value;
+
+  if (username.trim() === '') {
+    alert("Please enter your username! ");
+  } else if (password.trim() === '') {
+    alert("Please enter your password!");
+    //to check if username and password match
+  }else if(checkCredentials(username, password)) {
+    profileName.innerHTML = username;
+    main.classList.toggle('main-container-inloggde');
+    loginDiv.style.display = 'none';
+    inloggdeDiv.style.display = 'inline-block';
+    userInfo.style.display = 'inline-block';
+  }
+    else {
+      alert("Incorrect username or password!");
+    }
+})
+
+
+
+/* ----- Function to log sign out ----- */
+signOutBtn.addEventListener('click',() => {
+  window.location.href = 'http://127.0.0.1:5500/index.html';
+  isLoggedIn = false;
+})
+
+
+
+
+/* ----- Function to fetch api greating----- */
+let getGreeting = () => {
+  const greetings = ["Hello!", "Hi!","Hey!", "Hi there!", "Hey there!"];
+  // Randomly selects a greeting from the array
+  const randomIndex = Math.floor(Math.random() * greetings.length);
+  return greetings[randomIndex];
+}
+
+let displayGreetingAndQuote = async() => {
+  const greeting = getGreeting();
+  apiGreating.innerText = greeting;
+}
+
+displayGreetingAndQuote();
+
+
+
+/* ----- Function to fetch api quote----- */
+fetch('https://api.quotable.io/random')
+.then(response => response.json())
+.then(data => {
+    const quote = data.content;
+    apiQuote.innerHTML = `"${quote}"`;
+})
+.catch(error => console.error('Error fetching quote:', error));

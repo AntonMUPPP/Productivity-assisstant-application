@@ -19,15 +19,41 @@ nav > div:nth-child(2) > button {
   width: 120px;
   height: 30px;
   border: 1px solid gray;
-  border-radius: 10px;
+  border-radius: 8px;
+}
+
+nav > div:nth-child(2) > button:hover {
+  background: rgb(224, 224, 224);
+  cursor: pointer;
+}
+
+#profileName {
+  width: 50px;
+  border: none;
+  background: none;
+}
+
+#signOutBtn:hover {
+  cursor: pointer;
 }
 
 /* ----- style for main ----- */
-main {
+.main-container {
   background: url(https://images.unsplash.com/photo-1622547748225-3fc4abd2cca0?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHNpbXBsZXxlbnwwfHwwfHx8MA%3D%3D);
   background-position: left center;
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+.main-container-inloggde {
+  background: url(https://images.unsplash.com/photo-1516541196182-6bdb0516ed27?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Njd8fHNpbXBsZXxlbnwwfHwwfHx8MA%3D%3D);
+  background-color: rgb(255, 255, 255);
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 90vh;
+  display: flex;
+  justify-content: center;
 }
 
 .main-inloggning {
@@ -52,10 +78,11 @@ h1 {
   width: 100%;
 }
 
-#username, #password {
+#usernameInput, #passwordInput {
   width: 95%;
   height: 32px;
   margin: 5px;
+  padding-left: 10px;
 }
 
 div.main-inloggning > div > button {
@@ -71,15 +98,7 @@ div.main-inloggning > div > button {
   border-bottom: 2px solid red;
 }
 
-#login:focus {
-  border-bottom: 2px solid red;
-}
-
-#newAccount:focus {
-  border-bottom: 2px solid red;
-}
-
-#signin, #register {
+#signinBtn, #registerBtn {
   background: red;
   color: white;
   width: 70%;
@@ -89,11 +108,50 @@ div.main-inloggning > div > button {
   margin: 20px 0;
 }
 
-#signin:hover,
-#register:hover {
+#signinBtn:hover,
+#registerBtn:hover {
   background: rgb(255, 76, 76);
   color: white;
   cursor: pointer;
+}
+
+.main-inloggde {
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 20px;
+  padding: 5%;
+  min-width: 40%;
+  max-width: 70%;
+  height: 10%;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
+  margin: 180px 0;
+}
+
+h2.apiGreating {
+  margin: 0;
+}
+
+.apiQuote {
+  font-size: large;
+  font-weight: 300;
+  margin-bottom: 50px;
+}
+
+#myTodosBtn, #myHabitsBtn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4CAF50;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin: 10px 0;
+}
+
+#myTodosBtn, #myHabitsBtn:hover {
+  background-color: #45a049;
 }
 
 body {
