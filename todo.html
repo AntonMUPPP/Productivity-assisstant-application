@@ -20,17 +20,13 @@
             <p>Filter by:</p>
             <div>
               <label for="status">Status: </label>
-              <select name="status" id="status">
-                <option value="all">All</option>
-                <option value="completed">Completed</option>
-                <option value="pending">Pending</option>
-              </select>
+              <input type="checkbox" class="completed" id="completed" />
             </div>
             <div>
               <p>Category:</p>
               <label for="all">All</label>
               <input
-                type="radio"
+                type="checkbox"
                 name="category"
                 id="all"
                 value="all"
@@ -38,20 +34,30 @@
               />
 
               <label for="health">Health</label>
-              <input type="radio" name="category" id="health" value="health" />
+              <input
+                type="checkbox"
+                name="category"
+                id="health"
+                value="health"
+              />
 
               <label for="home">Home</label>
-              <input type="radio" name="category" id="home" value="home" />
+              <input type="checkbox" name="category" id="home" value="home" />
 
               <label for="work">Work</label>
-              <input type="radio" name="category" id="work" value="work" />
+              <input type="checkbox" name="category" id="work" value="work" />
 
               <label for="family">Family</label>
-              <input type="radio" name="category" id="family" value="family" />
+              <input
+                type="checkbox"
+                name="category"
+                id="family"
+                value="family"
+              />
 
               <label for="leisure">Leisure</label>
               <input
-                type="radio"
+                type="checkbox"
                 name="category"
                 id="leisure"
                 value="leisure"
