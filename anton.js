@@ -56,10 +56,16 @@
 
 
 
-
+  /* ----- Function to log goback button ----- */
 let goBack = () => {
     window.history.back();
   }
+
+  /* ----- Function to log sign out ----- */
+signOutBtn.addEventListener('click',() => {
+    window.location.href = 'http://127.0.0.1:5500/index.html';
+    isLoggedIn = false;
+  })
 
 
 //#region Antons code

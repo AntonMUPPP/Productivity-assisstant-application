@@ -111,8 +111,8 @@ let isUsernameAvailable = () => {
   const username = usernameInput.value;
   let keysArray = [];
   //Loop through all localStorage keys
-  for (var i = 0; i < localStorage.length; i++) {
-    var key = localStorage.key(i);
+  for (let i = 0; i < localStorage.length; i++) {
+    let key = localStorage.key(i);
     keysArray.push(key);
   }
   // console.log(keysArray);
