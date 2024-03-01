@@ -1,34 +1,34 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // Оголошення змінних та ініціалізація
+  // Declaration of variables and initialization
   let todos = JSON.parse(localStorage.getItem("todos")) || [];
   const todoListContainer = document.querySelector(".todo-container");
   const addTodoWindow = document.querySelector(".add-todo-window");
   const saveTodoButton = document.querySelector("#savetodo");
   let editedTodo = null;
 
-  // Функція, яка приховує вікно додавання завдання
+  // Function to hide the add todo window
   function hideAddTodoWindow() {
     addTodoWindow.style.display = "none";
   }
 
-  // Функція, яка показує вікно додавання завдання
+  // Function to show the add todo window
   function showAddTodoWindow() {
     addTodoWindow.style.display = "block";
   }
 
-  // Додавання обробника події для кнопки додавання завдання
+  // Adding event listener for the add todo button
   const addTodoButton = document.querySelector(".add-todo-btn");
   if (addTodoButton) {
     addTodoButton.addEventListener("click", showAddTodoWindow);
   }
 
-  // Додавання обробника події для кнопки закриття вікна додавання завдання
+  // Adding event listener for the close button of the add todo window
   const closeButton = document.querySelector(".add-todo-window .close");
   if (closeButton) {
     closeButton.addEventListener("click", hideAddTodoWindow);
   }
 
-  // Додавання обробника події для кнопки збереження завдання
+  // Adding event listener for the save todo button
   if (saveTodoButton) {
     saveTodoButton.addEventListener("click", function () {
       if (editedTodo) {
@@ -39,9 +39,9 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Функція для збереження нового завдання
+  // Function to save a new todo
   function saveTodo() {
-    // Отримання значень полів форми
+    // Getting values from the form fields
     const todoTitleInput = document.querySelector("#todotitle");
     const todoDescriptionInput = document.querySelector("#tododescription");
     const category = document.querySelector("#listcategory").value;
@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const dayInput = document.querySelector("input[name='day']").value;
     const hourInput = document.querySelector("input[name='hour']").value;
 
-    // Перевірка заповненості полів
+    // Checking for empty fields
     const todoTitle = todoTitleInput.value.trim();
     const todoDescription = todoDescriptionInput.value.trim();
     if (
@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    // Створення нового завдання
+    // Creating a new todo
     const newTodo = {
       id: Date.now(),
       title: todoTitle,
@@ -76,10 +76,10 @@ document.addEventListener("DOMContentLoaded", function () {
       category: category,
       status: document.getElementById("completed").checked
         ? "completed"
-        : "pending", // Змінив id на "completed"
+        : "pending",
     };
 
-    // Додавання нового завдання до списку, відображення та збереження в localStorage
+    // Adding the new todo to the list, rendering it, and saving it to localStorage
     todos.push(newTodo);
     renderTodos();
     todoTitleInput.value = "";
@@ -88,13 +88,13 @@ document.addEventListener("DOMContentLoaded", function () {
     hideAddTodoWindow();
   }
 
-  // Функція для відображення списку завдань
+  // Function to render the list of todos
   function renderTodos(selectedCategory) {
     todoListContainer.innerHTML = "";
 
     let filteredTodos = todos;
 
-    // Фільтрація за категорією, якщо вибрано конкретну категорію
+    // Filtering by category if a specific category is selected
     if (selectedCategory && selectedCategory !== "all") {
       filteredTodos = filteredTodos.filter(
         (todo) => todo.category === selectedCategory
@@ -106,9 +106,9 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Функція для додавання завдання до списку
+  // Function to add a todo to the list
   function addTodoToList(todo) {
-    // Створення елемента для завдання
+    // Creating an element for the todo
     const todoItem = document.createElement("div");
     todoItem.id = `todo-${todo.id}`;
     todoItem.classList.add("todo-item");
@@ -135,10 +135,10 @@ document.addEventListener("DOMContentLoaded", function () {
       </div>
     `;
 
-    // Додавання створеного елемента до списку
+    // Adding the created element to the list
     todoListContainer.appendChild(todoItem);
 
-    // Додавання обробників подій для кнопок редагування та видалення
+    // Adding event handlers for edit and delete buttons
     const editButton = todoItem.querySelector(".edit-todo-btn");
     editButton.addEventListener("click", function () {
       showAddTodoWindow();
@@ -165,7 +165,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 
-    // Додавання обробника події для чекбоксу "Complete"
+    // Adding event handler for the Complete checkbox
     const completeCheckbox = todoItem.querySelector(
       ".complete-checkbox input[type='checkbox']"
     );
@@ -176,9 +176,9 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Функція для збереження редагованого завдання
+  // Function to save an edited todo
   function saveEditedTodo() {
-    // Отримуємо значення полів форми
+    // Getting values from the form fields
     const todoTitleInput = document.querySelector("#todotitle");
     const todoDescriptionInput = document.querySelector("#tododescription");
     const category = document.querySelector("#listcategory").value;
@@ -186,7 +186,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const dayInput = document.querySelector("input[name='day']").value;
     const hourInput = document.querySelector("input[name='hour']").value;
 
-    // Перевіряємо, чи заповнені всі поля
+    // Checking for empty fields
     const todoTitle = todoTitleInput.value.trim();
     const todoDescription = todoDescriptionInput.value.trim();
     if (
@@ -200,7 +200,7 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    // Оновлюємо дані редагованого завдання
+    // Updating the edited todo's data
     editedTodo.title = todoTitle;
     editedTodo.description = todoDescription;
     editedTodo.category = category;
@@ -208,34 +208,34 @@ document.addEventListener("DOMContentLoaded", function () {
     editedTodo.time.day = parseInt(dayInput);
     editedTodo.time.hour = parseInt(hourInput);
 
-    // Оновлюємо список та зберігаємо його в localStorage
+    // Updating the list and saving it to localStorage
     renderTodos();
     localStorage.setItem("todos", JSON.stringify(todos));
 
-    // Очищуємо поля форми
+    // Clearing the form fields
     todoTitleInput.value = "";
     todoDescriptionInput.value = "";
 
-    // Приховуємо вікно редагування
+    // Hiding the edit window
     hideAddTodoWindow();
 
-    // Скидаємо значення editedTodo
+    // Resetting the editedTodo variable
     editedTodo = null;
   }
 
-  // Функція для фільтрації завдань за категоріями
+  // Function to filter todos by category
   function filterTodosByCategory() {
     let selectedCategories = [];
     const checkboxes = document.querySelectorAll(
       "input[name='category']:checked"
     );
 
-    // Отримання вибраних категорій
+    // Getting selected categories
     checkboxes.forEach((checkbox) => {
       selectedCategories.push(checkbox.value);
     });
 
-    // Фільтрація за вибраними категоріями
+    // Filtering by selected categories
     let filteredTodos = todos.filter((todo) => {
       return (
         selectedCategories.includes(todo.category) ||
@@ -243,39 +243,20 @@ document.addEventListener("DOMContentLoaded", function () {
       );
     });
 
-    // Виклик функції для відображення відфільтрованих завдань
+    // Rendering filtered todos
     renderTodos(filteredTodos);
   }
 
-  // Функція для очищення прапорців вибору категорій
-  function clearCategoryCheckboxes() {
-    const checkboxes = document.querySelectorAll("input[name='category']");
-    checkboxes.forEach((checkbox) => {
-      checkbox.checked = false;
-    });
-  }
-
-  // Додавання обробника події для кнопки сортування
-  const sortButton = document.querySelector("#sorting");
-  sortButton.addEventListener("click", filterTodosByCategory);
-
-  // Очищення прапорців категорій при завантаженні сторінки
-  clearCategoryCheckboxes();
-
-  // Додавання обробника події для радіокнопок категорій
-  const categoryRadios = document.querySelectorAll("input[name='category']");
-  categoryRadios.forEach((radio) => {
-    radio.addEventListener("change", function () {
-      const selectedCategory = document.querySelector(
-        "input[name='category']:checked"
-      ).value;
-      if (selectedCategory !== "all") {
-        sortTodos("category");
-      } else {
-        renderTodos();
-      }
+  // Adding event listeners for category checkboxes
+  const categoryCheckboxes = document.querySelectorAll(
+    "input[name='category']"
+  );
+  categoryCheckboxes.forEach((checkbox) => {
+    checkbox.addEventListener("change", function () {
+      filterTodosByCategory();
     });
   });
 
-  renderTodos(); // Для відображення завдань при завантаженні сторінки
+  // Rendering todos on page load
+  renderTodos();
 });
