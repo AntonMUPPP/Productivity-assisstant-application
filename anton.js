@@ -212,6 +212,7 @@ function sortHabits() {
             break
     }
     renderFilteredHabits(habits)        //Renders all the habits
+    clearCheckboxes()
 }
 
 //#endregion
