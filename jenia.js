@@ -209,24 +209,127 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Додаємо можливість сортування
   function sortTodos(sortingCriteria) {
+    let selectedCategory = document.querySelector(
+      "input[name='category']:checked"
+    ).value;
+
     switch (sortingCriteria) {
+      case "status":
+        todos.sort((a, b) => {
+          if (a.status === "completed" && b.status !== "completed") {
+            return 1; // Завершені завдання йдуть після незавершених
+          } else if (a.status !== "completed" && b.status === "completed") {
+            return -1; // Незавершені завдання йдуть перед завершеними
+          } else {
+            return 0; // Завдання з однаковим статусом залишаються на місці
+          }
+        });
+        break;
+
       case "closestday":
-        todos.sort((a, b) => new Date(a.deadline) - new Date(b.deadline));
+        todos.sort((a, b) => {
+          if (selectedCategory === "all") {
+            return new Date(a.deadline) - new Date(b.deadline);
+          }
+          if (
+            a.category === selectedCategory &&
+            b.category === selectedCategory
+          ) {
+            return new Date(a.deadline) - new Date(b.deadline);
+          } else if (a.category === selectedCategory) {
+            return -1;
+          } else if (b.category === selectedCategory) {
+            return 1;
+          } else {
+            return 0;
+          }
+        });
         break;
       case "longestday":
-        todos.sort((a, b) => new Date(b.deadline) - new Date(a.deadline));
+        todos.sort((a, b) => {
+          if (selectedCategory === "all") {
+            return new Date(b.deadline) - new Date(a.deadline);
+          }
+          if (
+            a.category === selectedCategory &&
+            b.category === selectedCategory
+          ) {
+            return new Date(b.deadline) - new Date(a.deadline);
+          } else if (a.category === selectedCategory) {
+            return -1;
+          } else if (b.category === selectedCategory) {
+            return 1;
+          } else {
+            return 0;
+          }
+        });
         break;
       case "shortesttime":
-        todos.sort(
-          (a, b) =>
-            a.time.day * 24 + a.time.hour - (b.time.day * 24 + b.time.hour)
-        );
+        todos.sort((a, b) => {
+          if (selectedCategory === "all") {
+            return (
+              a.time.day * 24 + a.time.hour - (b.time.day * 24 + b.time.hour)
+            );
+          }
+          if (
+            a.category === selectedCategory &&
+            b.category === selectedCategory
+          ) {
+            return (
+              a.time.day * 24 + a.time.hour - (b.time.day * 24 + b.time.hour)
+            );
+          } else if (a.category === selectedCategory) {
+            return -1;
+          } else if (b.category === selectedCategory) {
+            return 1;
+          } else {
+            return 0;
+          }
+        });
         break;
       case "longesttime":
-        todos.sort(
-          (a, b) =>
-            b.time.day * 24 + b.time.hour - (a.time.day * 24 + a.time.hour)
-        );
+        todos.sort((a, b) => {
+          if (selectedCategory === "all") {
+            return (
+              b.time.day * 24 + b.time.hour - (a.time.day * 24 + a.time.hour)
+            );
+          }
+          if (
+            a.category === selectedCategory &&
+            b.category === selectedCategory
+          ) {
+            return (
+              b.time.day * 24 + b.time.hour - (a.time.day * 24 + a.time.hour)
+            );
+          } else if (a.category === selectedCategory) {
+            return -1;
+          } else if (b.category === selectedCategory) {
+            return 1;
+          } else {
+            return 0;
+          }
+        });
+        break;
+      case "category":
+        todos.sort((a, b) => {
+          if (selectedCategory === "all") {
+            return (
+              a.time.day * 24 + a.time.hour - (b.time.day * 24 + b.time.hour)
+            );
+          }
+          if (
+            a.category === selectedCategory &&
+            b.category === selectedCategory
+          ) {
+            return new Date(a.deadline) - new Date(b.deadline);
+          } else if (a.category === selectedCategory) {
+            return -1;
+          } else if (b.category === selectedCategory) {
+            return 1;
+          } else {
+            return 0;
+          }
+        });
         break;
       default:
         break;
@@ -242,4 +345,19 @@ document.addEventListener("DOMContentLoaded", function () {
       sortTodos(sortingCriteria);
     });
   }
+
+  // Додаємо обробник подій для радіокнопок категорій
+  const categoryRadios = document.querySelectorAll("input[name='category']");
+  categoryRadios.forEach((radio) => {
+    radio.addEventListener("change", function () {
+      const selectedCategory = document.querySelector(
+        "input[name='category']:checked"
+      ).value;
+      if (selectedCategory !== "all") {
+        sortTodos("category");
+      } else {
+        renderTodos();
+      }
+    });
+  });
 });

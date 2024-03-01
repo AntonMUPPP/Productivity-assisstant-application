@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Todo List</title>
-    <link rel="stylesheet" href="jenia.css" />
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <header>
@@ -19,8 +19,12 @@
           <div class="filters">
             <p>Filter by:</p>
             <div>
-              <label for="status">Status: completed</label>
-              <input type="checkbox" name="status" id="status" />
+              <label for="status">Status: </label>
+              <select name="status" id="status">
+                <option value="all">All</option>
+                <option value="completed">Completed</option>
+                <option value="pending">Pending</option>
+              </select>
             </div>
             <div>
               <p>Category:</p>
@@ -55,6 +59,7 @@
             </div>
             <div>
               <select name="sorting" id="sorting">
+                <option value="anytime">Any time</option>
                 <option value="closestday">Closest deadline</option>
                 <option value="longestday">Longest deadline</option>
                 <option value="shortesttime">Shortest time</option>
@@ -115,6 +120,6 @@
         </div>
       </div>
     </main>
-    <script src="jenia.js" defer></script>
+    <script src="index.js" defer></script>
   </body>
 </html>
