@@ -34,6 +34,40 @@ a {
     /* відступ справа */
 }
 
+.filters {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.filters p {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.filters div {
+    margin-bottom: 10px;
+}
+
+.filters label {
+    margin-right: 10px;
+}
+
+.filters button {
+    background-color: hsl(19, 47%, 26%);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.filters button:hover {
+    background-color: #a26a21;
+}
+
 a:hover {
     text-decoration: underline;
     /* підкреслення при наведенні */
@@ -46,7 +80,7 @@ main {
 }
 
 .add-todo-btn {
-    background-color: #333;
+    background-color: #3f2e2e;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -54,18 +88,26 @@ main {
     border-radius: 5px;
 }
 
+.add-todo-btn:hover {
+    background-color: #9f6868;
+}
+
 .add-todo-window {
-    max-width: 400px;
-    /* Зменшуємо максимальну ширину вікна */
-    margin: 20px auto;
-    /* Центруємо вікно по горизонталі */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
     padding: 20px;
-    background-color: #fff;
+    border: 1px solid #ccc;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+    /* Забезпечуємо вікну найвищий шар над іншими елементами */
     display: none;
     /* Початково ховаємо вікно */
-    position: relative;
+    width: 300px;
+    /* Задаємо ширину вікна */
 }
 
 .add-todo-window .close {
@@ -93,15 +135,10 @@ main {
     border-radius: 3px;
 }
 
-.add-todo-window .date {
+.add-todo-window .date,
+.add-todo-window .time {
     display: inline-block;
     margin-right: 10px;
-}
-
-.add-todo-window #time {
-    display: inline-block;
-    margin-right: 10px;
-    width: 3rem;
 }
 
 .add-todo-window .todo-inputs div {
@@ -140,17 +177,6 @@ main {
     border-radius: 3px;
 }
 
-.complete-todo {
-    background-color: #28a745;
-}
-
-.edit-todo-btn {
-    background-color: #007bff;
-}
-
-.delete-todo-btn {
-    background-color: #dc3545;
-}
 
 .close {
     position: absolute;
@@ -160,7 +186,7 @@ main {
 }
 
 .close:hover {
-    color: red;
+    color: rgb(87, 61, 61);
 }
 
 /* Зміни для мобільних пристроїв */
