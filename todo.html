@@ -4,20 +4,23 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Todo List</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="jenia.css" />
   </head>
   <body>
     <header>
       <div class="header-todo"></div>
     </header>
+    <a href="">Back</a>
+
     <main>
       <div id="todo-page-container">
-        <div class="todos-option-container">
-          <button onclick="goBack()">Back</button>
+        <div class="my-todos">
           <button class="add-todo-btn">Add ToDo</button>
           <div class="filters">
+            <p>Filter by:</p>
+
             <div>
-              <p>Filter by Category:</p>
+              <p>Category:</p>
               <label for="all">All</label>
               <input
                 type="checkbox"
@@ -26,6 +29,7 @@
                 value="all"
                 checked
               />
+
               <label for="health">Health</label>
               <input
                 type="checkbox"
@@ -33,10 +37,13 @@
                 id="health"
                 value="health"
               />
+
               <label for="home">Home</label>
               <input type="checkbox" name="category" id="home" value="home" />
+
               <label for="work">Work</label>
               <input type="checkbox" name="category" id="work" value="work" />
+
               <label for="family">Family</label>
               <input
                 type="checkbox"
@@ -44,6 +51,7 @@
                 id="family"
                 value="family"
               />
+
               <label for="leisure">Leisure</label>
               <input
                 type="checkbox"
@@ -52,67 +60,71 @@
                 value="leisure"
               />
             </div>
-            <button cla onclick="filterTodo()">Filter</button>
-            <select name="sorting" id="sortSelect" onchange="sortTodo">
-              <option value="closestday">Closest deadline</option>
-              <option value="longestday">Longest deadline</option>
-              <option value="shortesttime">Shortest time</option>
-              <option value="longesttime">Longest time</option>
-            </select>
-            <label for="completed">Status:Completed </label>
-            <input type="checkbox" class="completed" id="completed" />
+            <button id="filter">Filter</button>
+
+            <div>
+              <select name="sorting" id="sorting">
+                <option value="closestday">Closest deadline</option>
+                <option value="longestday">Longest deadline</option>
+                <option value="shortesttime">Shortest time</option>
+                <option value="longesttime">Longest time</option>
+              </select>
+            </div>
+            <div>
+              <label for="status">Status: completed </label>
+              <input type="checkbox" class="completed" id="completed" />
+            </div>
+            <div class="add-todo-window">
+              <button class="close">X</button>
+              <h3>Add ToDo</h3>
+              <form action="" id="add-todo-form">
+                <div class="todo-inputs">
+                  <div>
+                    <label for="todotitle">ToDo</label>
+                    <input
+                      type="text"
+                      name="todotitle"
+                      id="todotitle"
+                      placeholder="Title"
+                    />
+                  </div>
+                  <div>
+                    <label for="tododescription">Description</label>
+                    <input
+                      type="text"
+                      name="tododescription"
+                      id="tododescription"
+                      placeholder="Description"
+                    />
+                  </div>
+                  <div>
+                    <label for="listcategory">Category</label>
+                    <select name="listcategory" id="listcategory">
+                      <option value="health">Health</option>
+                      <option value="home">Home</option>
+                      <option value="work">Work</option>
+                      <option value="family">Family</option>
+                      <option value="leisure">Leisure</option>
+                    </select>
+                  </div>
+                  <div class="date">
+                    <label for="deadline">Deadline</label>
+                    <input type="date" name="date" id="date" />
+                  </div>
+                  <div class="timeestimate">
+                    <label for="time">Time estimate:</label>
+                    <label for="day">days</label>
+                    <input type="number" name="day" id="day" />
+                    <label for="hour">hours</label>
+                    <input type="number" name="hour" id="hour" />
+                  </div>
+                </div>
+              </form>
+              <button class="save-todo-btn" id="savetodo">Save</button>
+            </div>
+            <div class="todo-container"></div>
           </div>
         </div>
-
-        <div class="add-todo-window">
-          <button class="close">X</button>
-          <h3>Add ToDo</h3>
-          <form action="" id="todoform">
-            <div class="todo-inputs">
-              <div>
-                <label for="todotitle">ToDo</label>
-                <input
-                  type="text"
-                  name="todotitle"
-                  id="todotitle"
-                  placeholder="Title"
-                />
-              </div>
-              <div>
-                <label for="tododescription">Description</label>
-                <input
-                  type="text"
-                  name="tododescription"
-                  id="tododescription"
-                  placeholder="Description"
-                />
-              </div>
-              <div>
-                <label for="listcategory">Category</label>
-                <select name="listcategory" id="listcategory">
-                  <option value="health">Health</option>
-                  <option value="home">Home</option>
-                  <option value="work">Work</option>
-                  <option value="leisure">Leisure</option>
-                  <option value="family">Family</option>
-                </select>
-              </div>
-              <div class="date">
-                <label for="deadline">Deadline</label>
-                <input type="date" name="date" id="date" />
-              </div>
-              <div class="timeestimate">
-                <label for="time">Time estimate:</label>
-                <label for="day">days</label>
-                <input type="number" name="day" id="day" />
-                <label for="hour">hours</label>
-                <input type="number" name="hour" id="hour" />
-              </div>
-            </div>
-          </form>
-          <button class="save-todo-btn" id="addTodoButton">Save</button>
-        </div>
-        <div class="todo-container"></div>
       </div>
     </main>
     <script src="jenia.js" defer></script>
