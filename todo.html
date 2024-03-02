@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Todo List</title>
     <link rel="stylesheet" href="jenia.css" />
+    <script src="jenia.js" defer></script>
   </head>
   <body>
     <header>
@@ -17,11 +18,9 @@
         <div class="my-todos">
           <button class="add-todo-btn">Add ToDo</button>
           <div class="filters">
+            <h1>My ToDos</h1>
             <p>Filter by:</p>
-            <div>
-              <label for="status">Status: </label>
-              <input type="checkbox" class="completed" id="completed" />
-            </div>
+
             <div>
               <p>Category:</p>
               <label for="all">All</label>
@@ -63,16 +62,22 @@
                 value="leisure"
               />
             </div>
+
+            <button id="filter">Filter</button>
+
             <div>
               <select name="sorting" id="sorting">
-                <option value="anytime">Any time</option>
                 <option value="closestday">Closest deadline</option>
                 <option value="longestday">Longest deadline</option>
                 <option value="shortesttime">Shortest time</option>
                 <option value="longesttime">Longest time</option>
               </select>
-              <button onclick="onRender()">Sort</button>
             </div>
+            <div>
+              <label for="completed">including my completed ToDos </label>
+              <input type="checkbox" class="completed" id="completed" />
+            </div>
+
             <div class="add-todo-window">
               <button class="close">X</button>
               <h3>Add ToDo</h3>
@@ -102,16 +107,16 @@
                       <option value="health">Health</option>
                       <option value="home">Home</option>
                       <option value="work">Work</option>
-                      <option value="leisure">Leisure</option>
                       <option value="family">Family</option>
+                      <option value="leisure">Leisure</option>
                     </select>
                   </div>
                   <div class="date">
-                    <label for="deadline">Deadline</label>
+                    <label>Deadline</label>
                     <input type="date" name="date" id="date" />
                   </div>
                   <div class="timeestimate">
-                    <label for="time">Time estimate:</label>
+                    <label>Time estimate:</label>
                     <label for="day">days</label>
                     <input type="number" name="day" id="day" />
                     <label for="hour">hours</label>
@@ -126,6 +131,5 @@
         </div>
       </div>
     </main>
-    <script src="jenia.js" defer></script>
   </body>
 </html>
