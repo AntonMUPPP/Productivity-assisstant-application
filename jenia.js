@@ -1,30 +1,42 @@
+// Execute the following code when the DOM content is loaded
 document.addEventListener("DOMContentLoaded", function () {
+  // Retrieve todos from local storage or initialize an empty array
   let todos = JSON.parse(localStorage.getItem("todos")) || [];
+  // Select the container for displaying the todo list
   const todoListContainer = document.querySelector(".todo-container");
+  // Select the window for adding a new todo
   const addTodoWindow = document.querySelector(".add-todo-window");
+  // Select the save button inside the add todo window
   const saveTodoButton = document.querySelector("#savetodo");
+  // Initialize a variable to store the edited todo
   let editedTodo = null;
 
+  // Function to hide the add todo window
   function hideAddTodoWindow() {
     addTodoWindow.style.display = "none";
   }
 
+  // Function to show the add todo window
   function showAddTodoWindow() {
     addTodoWindow.style.display = "block";
   }
 
+  // Select the add todo button and add event listener to show the add todo window when clicked
   const addTodoButton = document.querySelector(".add-todo-btn");
   if (addTodoButton) {
     addTodoButton.addEventListener("click", showAddTodoWindow);
   }
 
+  // Select the close button inside the add todo window and add event listener to hide the window when clicked
   const closeButton = document.querySelector(".add-todo-window .close");
   if (closeButton) {
     closeButton.addEventListener("click", hideAddTodoWindow);
   }
 
+  // Add event listener to the save todo button
   if (saveTodoButton) {
     saveTodoButton.addEventListener("click", function () {
+      // If an existing todo is being edited, save the edited todo; otherwise, save a new todo
       if (editedTodo) {
         saveEditedTodo();
       } else {
@@ -33,7 +45,9 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  // Function to save a new todo
   function saveTodo() {
+    // Retrieve input values from the add todo form
     const todoTitleInput = document.querySelector("#todotitle");
     const todoDescriptionInput = document.querySelector("#tododescription");
     const category = document.querySelector("#listcategory").value;
@@ -41,6 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const dayInput = document.querySelector("input[name='day']").value;
     const hourInput = document.querySelector("input[name='hour']").value;
 
+    // Trim input values and check for empty fields
     const todoTitle = todoTitleInput.value.trim();
     const todoDescription = todoDescriptionInput.value.trim();
     if (
@@ -54,6 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
+    // Create a new todo object
     const newTodo = {
       id: Date.now(),
       title: todoTitle,
@@ -69,6 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
         : "pending",
     };
 
+    // Add the new todo to the todos array, render todos, clear input fields, and hide the add todo window
     todos.push(newTodo);
     renderTodos();
     todoTitleInput.value = "";
@@ -77,10 +94,12 @@ document.addEventListener("DOMContentLoaded", function () {
     hideAddTodoWindow();
   }
 
+  // Function to render todos based on selected categories and sorting option
   function renderTodos(selectedCategories) {
     todoListContainer.innerHTML = "";
     let filteredTodos = todos;
 
+    // Filter todos based on selected categories
     if (
       selectedCategories &&
       selectedCategories.length > 0 &&
@@ -90,7 +109,15 @@ document.addEventListener("DOMContentLoaded", function () {
         selectedCategories.includes(todo.category)
       );
     }
+    // Filter completed todos if the corresponding checkbox is unchecked
+    const showCompleted = document.getElementById("completed").checked;
+    if (!showCompleted) {
+      filteredTodos = filteredTodos.filter(
+        (todo) => todo.status !== "completed"
+      );
+    }
 
+    // Sort todos based on the selected sorting option
     switch (document.querySelector("#sorting").value) {
       case "closestday":
         filteredTodos.sort(
@@ -114,14 +141,27 @@ document.addEventListener("DOMContentLoaded", function () {
             b.time.day * 24 + b.time.hour - (a.time.day * 24 + a.time.hour)
         );
         break;
+      case "status":
+        filteredTodos.sort((a, b) => {
+          if (a.status === "completed") {
+            return -1;
+          } else if (b.status === "completed") {
+            return 1;
+          } else {
+            return new Date(a.deadline) - new Date(b.deadline);
+          }
+        });
+        break;
     }
 
+    // Iterate over filtered todos and add them to the todo list container
     filteredTodos.forEach((todo) => {
       addTodoToList(todo);
     });
     console.log("rendered todos", filteredTodos);
   }
 
+  // Function to add a todo to the todo list container
   function addTodoToList(todo) {
     const todoItem = document.createElement("div");
     todoItem.id = `todo-${todo.id}`;
@@ -151,6 +191,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     todoListContainer.appendChild(todoItem);
 
+    // Add event listeners for edit, delete, and complete buttons
     const editButton = todoItem.querySelector(".edit-todo-btn");
     editButton.addEventListener("click", function () {
       showAddTodoWindow();
@@ -172,22 +213,24 @@ document.addEventListener("DOMContentLoaded", function () {
       const index = todos.indexOf(todo);
       if (index > -1) {
         todos.splice(index, 1);
-        renderTodos();
         localStorage.setItem("todos", JSON.stringify(todos));
+        renderTodos(getSelectedCategories()); // Refresh the display of the todo list after deletion
       }
     });
 
     const completeCheckbox = todoItem.querySelector(
       ".complete-checkbox input[type='checkbox']"
     );
+    // Add event listener for changing the status of a todo
     completeCheckbox.addEventListener("change", function () {
       todo.status = this.checked ? "completed" : "pending";
-      renderTodos();
       localStorage.setItem("todos", JSON.stringify(todos));
     });
   }
 
+  // Function to save edited todo
   function saveEditedTodo() {
+    // Retrieve input values from the add todo form
     const todoTitleInput = document.querySelector("#todotitle");
     const todoDescriptionInput = document.querySelector("#tododescription");
     const category = document.querySelector("#listcategory").value;
@@ -195,6 +238,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const dayInput = document.querySelector("input[name='day']").value;
     const hourInput = document.querySelector("input[name='hour']").value;
 
+    // Trim input values and check for empty fields
     const todoTitle = todoTitleInput.value.trim();
     const todoDescription = todoDescriptionInput.value.trim();
     if (
@@ -208,6 +252,7 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
+    // Update the edited todo with new values
     editedTodo.title = todoTitle;
     editedTodo.description = todoDescription;
     editedTodo.category = category;
@@ -215,32 +260,39 @@ document.addEventListener("DOMContentLoaded", function () {
     editedTodo.time.day = parseInt(dayInput);
     editedTodo.time.hour = parseInt(hourInput);
 
+    // Render todos, update local storage, clear input fields, hide the add todo window, and reset the edited todo
     renderTodos();
     localStorage.setItem("todos", JSON.stringify(todos));
-
     todoTitleInput.value = "";
     todoDescriptionInput.value = "";
-
     hideAddTodoWindow();
-
     editedTodo = null;
   }
 
+  // Add event listener for changing the sorting option and render todos accordingly
   document.querySelector("#sorting").addEventListener("change", function () {
     renderTodos(getSelectedCategories());
   });
 
+  // Add event listener for clicking the filter button and render todos accordingly
   document
     .querySelector(".filters button")
     .addEventListener("click", function () {
       renderTodos(getSelectedCategories());
     });
 
+  // Add event listener for changing the status checkbox and render todos accordingly
+  document.querySelector("#completed").addEventListener("change", function () {
+    renderTodos(getSelectedCategories());
+  });
+
+  // Event handler for the category checkboxes in the add todo form
   function getSelectedCategories() {
     return Array.from(
       document.querySelectorAll('input[name="category"]:checked')
     ).map((checkbox) => checkbox.value);
   }
 
+  // Initial rendering of todos based on selected categories
   renderTodos(getSelectedCategories());
 });
