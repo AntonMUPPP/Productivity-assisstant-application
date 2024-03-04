@@ -1,3 +1,54 @@
+* {
+    box-sizing: border-box;
+}
+
+/* ----- style for header ----- */
+header {
+    background: lightgray;
+}
+
+body {
+    background: url(https://images.unsplash.com/photo-1622547748225-3fc4abd2cca0?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHNpbXBsZXxlbnwwfHwwfHx8MA%3D%3D);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+
+.header-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+#weather-icon {
+    width: 30px;
+    font-size: 20px;
+}
+
+nav>div:nth-child(2)>button {
+    width: 120px;
+    height: 30px;
+    border: 1px solid gray;
+    border-radius: 8px;
+}
+
+nav>div:nth-child(2)>button:hover {
+    background: rgb(224, 224, 224);
+    cursor: pointer;
+}
+
+#profileName {
+    width: 50px;
+    border: none;
+    background: none;
+}
+
+#signOutBtn:hover {
+    cursor: pointer;
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -6,37 +57,34 @@ body {
 }
 
 .my-todos {
+    /*the whole container*/
     width: 80%;
     /* ширина елементу */
     max-width: 600px;
     /* максимальна ширина */
-    margin: 0 auto;
+    margin: 10px auto;
     /* автоматичний відступ по горизонталі, щоб розмістити по центру */
     padding: 20px;
+    background-color: #e6d2c4;
     /* відступи для кращого відображення */
-    background-color: #f8f9fa;
     /* колір фону */
 }
 
-header {
-    background-color: #333;
-    color: #fff;
-    padding: 1rem;
-    text-align: center;
-}
+
 
 a {
-    color: #86480a;
+    color: #564444;
     /* колір тексту */
     text-decoration: none;
     /* відсутність підкреслення */
     margin-right: 10px;
+    font-size: 20px;
     /* відступ справа */
 }
 
 .filters {
     background-color: #f0f0f0;
-    padding: 20px;
+    padding: 30px;
     border-radius: 5px;
     margin-bottom: 20px;
 }
@@ -51,26 +99,25 @@ a {
 }
 
 .filters label {
-    margin-right: 10px;
+    margin-left: 10px;
 }
 
 .filters button {
-    background-color: hsl(19, 47%, 26%);
-    color: white;
+    background-color: #797474;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
     margin: 10px;
+    color: white;
 }
 
 .filters button:hover {
-    background-color: #a26a21;
+    background-color: #e0b1a8;
 }
 
 a:hover {
     text-decoration: underline;
-    /* підкреслення при наведенні */
 }
 
 main {
@@ -80,16 +127,22 @@ main {
 }
 
 .add-todo-btn {
-    background-color: #3f2e2e;
+    background-color: #797474;
     color: #fff;
     border: none;
-    padding: 10px 20px;
+    padding: 12px 24px;
     cursor: pointer;
     border-radius: 5px;
+    margin: 20px 20px;
+    margin: 20px auto;
+    /* Center the button horizontally */
+    display: block;
+    /* Ensure the button takes up full width */
+
 }
 
 .add-todo-btn:hover {
-    background-color: #9f6868;
+    background-color: #e0b1a8;
 }
 
 .add-todo-window {
@@ -118,7 +171,7 @@ main {
     border: none;
     cursor: pointer;
     font-size: 24px;
-    color: #999;
+    color: #797474;
 }
 
 .add-todo-window label {
@@ -168,13 +221,14 @@ main {
 }
 
 .todo-actions button {
-    margin-left: 5px;
-    background-color: #333;
-    color: #fff;
+    color: white;
     border: none;
-    padding: 5px 10px;
     cursor: pointer;
-    border-radius: 3px;
+    background-color: #797474;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
 }
 
 
@@ -183,11 +237,14 @@ main {
     top: 10px;
     right: 10px;
     cursor: pointer;
+    background-color: #797474;
 }
 
 .close:hover {
-    color: rgb(87, 61, 61);
+    color: rgb(200, 168, 168);
 }
+
+
 
 /* Зміни для мобільних пристроїв */
 @media only screen and (max-width: 600px) {
