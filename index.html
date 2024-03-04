@@ -4,26 +4,60 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Assisstant-application</title>
+    <script
+      src="https://kit.fontawesome.com/a2d649a589.js"
+      crossorigin="anonymous"
+    ></script>
     <link rel="stylesheet" href="styles.css" />
-    <script src="script.js" defer></script>
+    <script src="Shishi.js" defer></script>
   </head>
   <body>
     <header>
-      <nav>
-        <div class="weather">Sunny</div>
+      <nav class="header-nav">
+        <div class="weather_container">
+          <i
+            id="weather-icon"
+            class="fa-solid fa-cloud-sun"
+            aria-hidden="true"
+          ></i>
+          <span id="weather-text">Loading...</span>
+        </div>
         <div>
           <button>Calender</button>
-          <button>pomodoro timer</button>
+          <button>Pomodoro timer</button>
+        </div>
+        <div class="user_info" style="display: none">
+          <i class="fa-solid fa-user"
+            ><button id="profileName">username</button></i
+          >
+          <button id="signOutBtn">Sign out</button>
         </div>
       </nav>
     </header>
-    <main>
-      <div>
-        <h1>Log in</h1>
-        <input type="text" placeholder="username" /><br />
-        <input type="text" placeholder="password" /><br />
-        <button>Sign in</button>
-        <button>Register</button>
+    <main id="main" class="main-container">
+      <div class="main-inloggning">
+        <h1>Welcome</h1>
+        <div class="login_title">
+          <button type="button" id="login">Log in</button>
+          <button type="button" id="newAccount">New account</button>
+        </div>
+        <input type="text" id="usernameInput" placeholder="Username" required />
+        <input
+          type="password"
+          id="passwordInput"
+          placeholder="Password"
+          required
+        />
+        <button type="submit" id="signinBtn">Sign in</button>
+        <button type="submit" id="registerBtn" style="display: none">
+          Register
+        </button>
+      </div>
+      <div class="main-inloggde" style="display: none">
+        <h2 class="apiGreating"></h2>
+        <p class="apiQuote"></p>
+        <a href=""><button id="myTodosBtn">My to-dos</button></a>
+        <a href="habit.html"><button id="myHabitsBtn">My habits</button></a>
       </div>
     </main>
   </body>

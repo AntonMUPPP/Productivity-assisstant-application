@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/a2d649a589.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="anton.js" defer></script>
+    <title>My habits</title>
+  </head>
+  <body>
+    <header>
+      <nav class="header-nav">
+        <div class="weather_container">
+          <i
+            id="weather-icon"
+            class="fa-solid fa-cloud-sun"
+            aria-hidden="true"
+          ></i>
+          <span id="weather-text">Loading...</span>
+        </div>
+        <div>
+          <button>Calender</button>
+          <button>Pomodoro timer</button>
+        </div>
+        <div class="user_info">
+          <i class="fa-solid fa-user"
+            ><button id="profileName">username</button></i
+          >
+          <button id="signOutBtn">Sign out</button>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <div class="habit-page-container">
+        <div class="habit-option-container">
+          <button onclick="goBack()">Back</button>
+          <button onclick="toggleHabitWindow()">Add Habit</button>
+          <p>Filter by priority:</p>
+          <div>
+            <label for="low">Low</label>
+            <input type="checkbox" name="priority" id="low" value="low" />
+            <label for="medium">Medium</label>
+            <input type="checkbox" name="priority" id="medium" value="medium" />
+            <label for="high">High</label>
+            <input type="checkbox" name="priority" id="high" value="high" />
+          </div>
+          <button onclick="filterHabits()">Filter</button>
+          <select name="sort" id="sortSelect" onchange="sortHabits()">
+            <option value="streakAsc">Habit streak - Ascending</option>
+            <option value="streakDesc">Habit streak - Descending</option>
+            <option value="priorityAsc">Priority - Ascending</option>
+            <option value="priorityDesc">Priority - Descending</option>
+          </select>
+        </div>
+        <div class="add-habit-window">
+          <button class="close" onclick="toggleHabitWindow()">X</button>
+          <h2>Add habit</h2>
+          <form id="habitform">
+            <div class="habit-inputs">
+              <div>
+                <label for="habittitle">Habit:</label>
+                <input type="text" name="habittitle" id="habittitle" />
+              </div>
+              <div>
+                <label for="priorityselect">Priority:</label>
+                <select name="priorityselect" id="priorityselect">
+                  <option value="low">Low</option>
+                  <option value="medium">Medium</option>
+                  <option value="high">High</option>
+                </select>
+              </div>
+            </div>
+          </form>
+          <button id="addHabitButton" onclick="addHabit()">Add Habit</button>
+        </div>
+        <div class="habit-container"></div>
+      </div>
+    </main>
+  </body>
+</html>
