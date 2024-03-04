@@ -3,7 +3,6 @@ const apiKey = "c0a747ea68752bc62e09f4fce7115f76";
 const city = "Stockholm";
 const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
-
 let fetchWeather = async () => {
   try {
     const response = await fetch(apiUrl);
@@ -16,21 +15,15 @@ let fetchWeather = async () => {
     const weatherIcon = document.querySelector("#weather-icon");
     const weatherText = document.querySelector("#weather-text");
 
-    if (weatherDescription === "01d")  {
+    if (weatherDescription === "01d") {
       weatherIcon.className = "fa-solid fa-sun"; // Change to appropriate sunny icon（day）
-    }else if (weatherDescription === "01n")  {
+    } else if (weatherDescription === "01n") {
       weatherIcon.className = "fa-solid fa-moon"; // Change to appropriate sunny icon(night)
     } else if (weatherDescription === "02d" || weatherDescription === "02n") {
       weatherIcon.className = "fa-solid fa-cloud-sun"; // Change to appropriate few clouds icon
-    } else if (
-      weatherDescription === "03d" ||
-      weatherDescription === "04d" 
-    ) {
+    } else if (weatherDescription === "03d" || weatherDescription === "04d") {
       weatherIcon.className = "fa-solid fa-cloud"; // Change to appropriate scattered clouds icon (day)
-    } else if (
-      weatherDescription === "03n" ||
-      weatherDescription === "04n" 
-    ) {
+    } else if (weatherDescription === "03n" || weatherDescription === "04n") {
       weatherIcon.className = "fa-solid fa-cloud-moon"; // Change to appropriate scattered clouds icon (night)
     } else if (weatherDescription === "09d" || weatherDescription === "09n") {
       weatherIcon.className = "fa-solid fa-cloud-showers-heavy"; // Change to appropriate shower rain icon
@@ -50,16 +43,14 @@ let fetchWeather = async () => {
   } catch (error) {
     console.error("Error fetching weather:", error);
   }
-}
+};
 
 fetchWeather();
 
-
- /* ----- Function to log goback button ----- */
- let goBack = () => {
+/* ----- Function to log goback button ----- */
+let goBack = () => {
   window.history.back();
-}
-
+};
 
 // Execute the following code when the DOM content is loaded
 document.addEventListener("DOMContentLoaded", function () {
@@ -74,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Initialize a variable to store the edited todo
   let editedTodo = null;
 
-  // Function to hide the add todo window
+  // Function to hide  add todo window
   function hideAddTodoWindow() {
     addTodoWindow.style.display = "none";
   }
