@@ -1,34 +1,3 @@
-/* @import ".partials/_variables"; */
-
-$canvas:white;
-$primary-color:lightgray;
-
-$color-hover-button: lightgray;
-$color-background-button: gray;
-$color-text-button:white;
-
-$color-background-NiceToHaveBtn: gray;
-$color-text-NiceToHaveBtn: gray;
-$color-hover-NiceToHaveBtn: lightgray;
-
-$h1-fontsize:2rem;
-$h2-fontsize:1.5rem;
-$h3-fontsize:1rem;
-$h4-fontsize:0.8rem;
-$p-fontsize:0.7rem;
-
-*{
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
-}
-
-.header{
-    width: 100vw;
-    height: 10vh;
-    background-color: red;
-}
-
 .habit-page-container{
     display: flex;
     flex-direction: column;
@@ -42,6 +11,7 @@ $p-fontsize:0.7rem;
     width: 80vw;
     gap: 16px;
     padding: 12px;
+   
     a{
         text-decoration: none;
         color: black;
@@ -65,7 +35,7 @@ $p-fontsize:0.7rem;
     width: 80vw;
     height: fit-content;
     min-height: 60vh;
-    background-color: $primary-color;
+    background-color: $primary-bg-color;
     display: flex;
     flex-direction: column;
     align-items: center;

@@ -52,6 +52,13 @@ let goBack = () => {
   window.history.back();
 };
 
+  /* ----- Function to log sign out ----- */
+  signOutBtn.addEventListener('click',() => {
+    window.location.href = 'http://127.0.0.1:5500/index.html';
+    isLoggedIn = false;
+  })
+
+
 // Execute the following code when the DOM content is loaded
 document.addEventListener("DOMContentLoaded", function () {
   // Retrieve todos from local storage or initialize an empty array

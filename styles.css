@@ -1,14 +1,18 @@
-/* @import ".partials/_variables"; */
+@charset "UTF-8";
 * {
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
 }
 
-.header {
-  width: 100vw;
-  height: 10vh;
-  background-color: red;
+body {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  min-height: 100vh;
+  width: 100%;
+  font-family: "Poppins", sans-serif;
+  box-sizing: border-box;
 }
 
 .habit-page-container {
@@ -120,6 +124,191 @@
   gap: 16px;
 }
 
+.my-todos {
+  width: 80%;
+  max-width: 600px;
+  margin: 10px auto;
+  padding: 20px;
+  background-color: #e6d2c4;
+}
+
+a {
+  color: #564444;
+  text-decoration: none;
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+.filters {
+  padding: 30px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.filters p {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.filters div {
+  margin-bottom: 10px;
+}
+
+.filters label {
+  margin-left: 10px;
+}
+
+.filters button {
+  background-color: #797474;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px;
+  color: white;
+}
+
+.filters button:hover {
+  background-color: #e0b1a8;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+#todo-main {
+  background: url(https://images.unsplash.com/photo-1516541196182-6bdb0516ed27?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Njd8fHNpbXBsZXxlbnwwfHwwfHx8MA%3D%3D);
+  background-color: rgb(255, 255, 255);
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.add-todo-btn {
+  background-color: #797474;
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 20px 20px;
+  margin: 20px auto;
+  /* Center the button horizontally */
+  display: block;
+  /* Ensure the button takes up full width */
+}
+
+.add-todo-btn:hover {
+  background-color: #e0b1a8;
+}
+
+.add-todo-window {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  /* Забезпечуємо вікну найвищий шар над іншими елементами */
+  display: none;
+  /* Початково ховаємо вікно */
+  width: 300px;
+  /* Задаємо ширину вікна */
+}
+
+.add-todo-window .close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  color: #797474;
+}
+
+.add-todo-window label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.add-todo-window input[type=text],
+.add-todo-window select {
+  width: calc(100% - 12px);
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.add-todo-window .date,
+.add-todo-window .time {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.add-todo-window .todo-inputs div {
+  margin-bottom: 15px;
+}
+
+.add-todo-window .todo-actions {
+  margin-top: 15px;
+}
+
+.todo-container {
+  margin-top: 20px;
+  max-width: 500px;
+}
+
+.todo-item {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.todo-title {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.todo-actions button {
+  color: white;
+  border: none;
+  cursor: pointer;
+  background-color: #797474;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  background-color: #797474;
+}
+
+.close:hover {
+  color: rgb(200, 168, 168);
+}
+
+/* Зміни для мобільних пристроїв */
+@media only screen and (max-width: 600px) {
+  .container {
+    max-width: 100%;
+  }
+}
 /* ----- style for header ----- */
 header {
   background: lightgray;
@@ -152,6 +341,7 @@ nav > div:nth-child(2) > button:hover {
 #profileName {
   width: 50px;
   border: none;
+  margin: 0 15px 0 3px;
   background: none;
 }
 
@@ -276,14 +466,4 @@ h2.apiGreating {
 
 #myTodosBtn, #myHabitsBtn:hover {
   background-color: #45a049;
-}
-
-body {
-  display: flex;
-  flex-direction: column;
-  margin: auto;
-  min-height: 100vh;
-  width: 100%;
-  font-family: "Poppins", sans-serif;
-  box-sizing: border-box;
 }/*# sourceMappingURL=styles.css.map */
