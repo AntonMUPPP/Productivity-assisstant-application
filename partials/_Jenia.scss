@@ -1,0 +1,50 @@
+@import "partioals/_varibales";
+
+$canvas: white;
+$primary-color: lightgray;
+
+$color-hover-button: lightgray;
+$color-background-button: gray;
+$color-text-button: white;
+
+$color-background-NiceToHaveBtn: gray;
+$color-text-NiceToHaveBtn: gray;
+$color-hover-NiceToHaveBtn: lightgray;
+
+$h1-fontsize: 2rem;
+$h2-fontsize: 1.5rem;
+$h3-fontsize: 1rem;
+$h4-fontsize: 0.8rem;
+$p-fontsize: 0.7rem;
+
+* {
+  box-sizing: border-box;
+}
+
+/* ----- style for header ----- */
+header {
+  background: lightgray;
+}
+
+.todo-page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+/*the whole container*/
+.my-todos {
+  width: 80%;
+  max-width: 600px;
+  margin: 10px auto;
+  padding: 20px;
+  background-color: #e9d1d1;
+}
+
+a {
+  color: #564444;
+  text-decoration: none;
+  margin-right: 10px;
+  font-size: large;
+}
