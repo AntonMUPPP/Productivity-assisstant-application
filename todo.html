@@ -4,16 +4,39 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Todo List</title>
+    <script
+      src="https://kit.fontawesome.com/a2d649a589.js"
+      crossorigin="anonymous"
+    ></script>
     <link rel="stylesheet" href="jenia.css" />
     <script src="jenia.js" defer></script>
   </head>
   <body>
     <header>
-      <div class="header-todo"></div>
+      <nav class="header-nav">
+        <div class="weather_container">
+          <i
+            id="weather-icon"
+            class="fa-solid fa-cloud-sun"
+            aria-hidden="true"
+          ></i>
+          <span id="weather-text">Loading...</span>
+        </div>
+        <div>
+          <button>Calender</button>
+          <button>Pomodoro timer</button>
+        </div>
+        <div class="user_info" style="display: none">
+          <i class="fa-solid fa-user"
+            ><button id="profileName">username</button></i
+          >
+          <button id="signOutBtn">Sign out</button>
+        </div>
+      </nav>
     </header>
-    <a href="">Back</a>
 
     <main>
+      <button onclick="goBack()">Back</button>
       <div id="todo-page-container">
         <div class="my-todos">
           <button class="add-todo-btn">Add ToDo</button>
