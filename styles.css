@@ -12,7 +12,6 @@ body {
   min-height: 100vh;
   width: 100%;
   font-family: "Poppins", sans-serif;
-  box-sizing: border-box;
 }
 
 .habit-page-container {
@@ -183,6 +182,7 @@ a:hover {
   background-size: cover;
   background-repeat: no-repeat;
   width: 100%;
+  min-height: 100vh;
   margin: 0 auto;
   padding: 20px;
 }
