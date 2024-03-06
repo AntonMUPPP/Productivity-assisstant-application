@@ -14,6 +14,77 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
+.timer {
+  border-radius: 16px;
+  width: 400px;
+  height: 500px;
+  background-color: #035E7B;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.timer button {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.timer-option-container {
+  width: 100%;
+  height: 60px;
+  background-color: #E3E7AF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  border-radius: 16px 16px 0px 0px;
+}
+.timer-option-container button {
+  color: white;
+  background-color: #002E2C;
+  border: none;
+  border-radius: 4px;
+}
+.timer-option-container button:hover {
+  background-color: #001b19;
+}
+
+.set-time-btn {
+  width: 60px;
+  height: 30px;
+}
+
+.timer-text {
+  font-size: 64px;
+}
+
+.timer-use-btn {
+  width: 180px;
+  height: 60px;
+  margin-bottom: 16px;
+  background-color: #002E2C;
+  border: none;
+  border-radius: 16px;
+  color: white;
+}
+.timer-use-btn:hover {
+  background-color: #001b19;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+}
+
 .habit-page-container {
   display: flex;
   flex-direction: column;
