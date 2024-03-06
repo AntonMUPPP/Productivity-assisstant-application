@@ -74,8 +74,9 @@
  const signOutBtn = document.querySelector('#signOutBtn');
  const apiGreating = document.querySelector('.apiGreating');
  const apiQuote = document.querySelector('.apiQuote');
-//  let currentUser = null;
-//  let isLoggedIn = false;
+ const myHabitsBtn = document.querySelector('#myHabitsBtn');
+ const myTodosBtn = document.querySelector('#myTodosBtn');
+ let isLoggedIn = false;
 
  newAccount.addEventListener('click', ()=>{
   login.style.borderBottom = "none";
@@ -124,7 +125,7 @@ let isUsernameAvailable = () => {
 
 registerBtn.addEventListener('click',()=>{
   const username = usernameInput.value;
-  const password = passwordInput.value
+  const password = passwordInput.value;
 
   //to check if the username inputs are empty.
 if (username.trim() === ''){
@@ -157,11 +158,8 @@ signinBtn.addEventListener('click',()=>{
     alert("Please enter your password!");
     //to check if username and password match
   }else if(checkCredentials(username, password)) {
-    profileName.innerHTML = username;
-    main.classList.toggle('main-container-inloggde');
-    loginDiv.style.display = 'none';
-    inloggdeDiv.style.display = 'inline-block';
-    userInfo.style.display = 'inline-block';
+    localStorage.setItem('loggedInUser',username);
+    userHomePage();
   }
     else {
       alert("Incorrect username or password!");
@@ -172,11 +170,32 @@ signinBtn.addEventListener('click',()=>{
 
 /* ----- Function to log sign out ----- */
 signOutBtn.addEventListener('click',() => {
-  window.location.href = 'http://127.0.0.1:5500/index.html';
+  localStorage.removeItem('loggedInUser');
+  main.classList = 'main-container'
+  loginDiv.style.display = 'inline-block';
+  inloggdeDiv.style.display = 'none';
+  userInfo.style.display = 'none';
   isLoggedIn = false;
+  window.location.href = 'index.html';
 })
 
 
+
+let userHomePage = () => {
+  let currentUser = localStorage.getItem('loggedInUser');
+  profileName.innerText = currentUser;
+  main.classList = 'main-container-inloggde'
+  loginDiv.style.display = 'none';
+  inloggdeDiv.style.display = 'inline-block';
+  userInfo.style.display = 'inline-block';
+  isLoggedIn = true;
+}
+
+/* --- Check if users was already logged in */
+if (localStorage.getItem('loggedInUser')) {
+  // debugger;
+  userHomePage();
+}
 
 
 /* ----- Function to fetch api greating----- */
@@ -192,10 +211,8 @@ let displayGreetingAndQuote = async() => {
   apiGreating.innerText = greeting;
 }
 
+
 displayGreetingAndQuote();
-
-
-
 /* ----- Function to fetch api quote----- */
 fetch('https://api.quotable.io/random')
 .then(response => response.json())

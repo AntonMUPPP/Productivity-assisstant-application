@@ -54,15 +54,21 @@ let goBack = () => {
 
   /* ----- Function to log sign out ----- */
   signOutBtn.addEventListener('click',() => {
-    window.location.href = 'http://127.0.0.1:5500/index.html';
-    isLoggedIn = false;
-  })
+    localStorage.removeItem('loggedInUser');
+     window.location.href = 'index.html';
+   })
+ 
+
+  let currentUser = localStorage.getItem('loggedInUser');
+  //show username on header
+const profileName = document.querySelector('#profileName');
+profileName.innerText = currentUser;
 
 
 // Execute the following code when the DOM content is loaded
 document.addEventListener("DOMContentLoaded", function () {
+  let todos = JSON.parse(localStorage.getItem(`${currentUser}-todos`)) || [];
   // Retrieve todos from local storage or initialize an empty array
-  let todos = JSON.parse(localStorage.getItem("todos")) || [];
   // Select the container for displaying the todo list
   const todoListContainer = document.querySelector(".todo-container");
   // Select the window for adding a new todo
@@ -151,7 +157,7 @@ document.addEventListener("DOMContentLoaded", function () {
     renderTodos();
     todoTitleInput.value = "";
     todoDescriptionInput.value = "";
-    localStorage.setItem("todos", JSON.stringify(todos));
+    localStorage.setItem(`${currentUser}-todos`, JSON.stringify(todos));
     hideAddTodoWindow();
   }
 
@@ -274,7 +280,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const index = todos.indexOf(todo);
       if (index > -1) {
         todos.splice(index, 1);
-        localStorage.setItem("todos", JSON.stringify(todos));
+        localStorage.setItem(`${currentUser}-todos`, JSON.stringify(todos));
         renderTodos(getSelectedCategories()); // Refresh the display of the todo list after deletion
       }
     });
@@ -285,7 +291,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Add event listener for changing the status of a todo
     completeCheckbox.addEventListener("change", function () {
       todo.status = this.checked ? "completed" : "pending";
-      localStorage.setItem("todos", JSON.stringify(todos));
+      localStorage.setItem(`${currentUser}-todos`, JSON.stringify(todos));
     });
   }
 
@@ -323,7 +329,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Render todos, update local storage, clear input fields, hide the add todo window, and reset the edited todo
     renderTodos();
-    localStorage.setItem("todos", JSON.stringify(todos));
+    localStorage.setItem(`${currentUser}-todos`, JSON.stringify(todos));
     todoTitleInput.value = "";
     todoDescriptionInput.value = "";
     hideAddTodoWindow();
