@@ -58,18 +58,23 @@
 
   /* ----- Function to log goback button ----- */
 let goBack = () => {
-    window.history.back();
+    window.history.go(-1);
   }
 
   /* ----- Function to log sign out ----- */
 signOutBtn.addEventListener('click',() => {
-    window.location.href = 'http://127.0.0.1:5500/index.html';
-    isLoggedIn = false;
+   localStorage.removeItem('loggedInUser');
+    window.location.href = 'index.html';
   })
+
+  let currentUser = localStorage.getItem('loggedInUser');
+  //show username on header
+const profileName = document.querySelector('#profileName');
+profileName.innerText = currentUser;
 
 
 //#region Antons code
-let habits = JSON.parse(localStorage.getItem("habits")) || []
+let habits = JSON.parse(localStorage.getItem(`${currentUser}-habits`)) || []
 let filteredHabits = []
 
 window.onload = renderFilteredHabits(habits)      //Just renders the habits everytime the page gets reloaded
@@ -162,7 +167,7 @@ function addHabit() {
     addHabitHeading.textContent = "Add Habit"
 
     //Updates local storage
-    localStorage.setItem("habits", JSON.stringify(habits))
+    localStorage.setItem(`${currentUser}-habits`, JSON.stringify(habits))
 }
 
 function deleteHabit(habitId) {
@@ -177,7 +182,7 @@ function deleteHabit(habitId) {
         //Removes the habit from the array and local storage
         if (index !== -1) {
             habits.splice(index, 1)
-            localStorage.setItem("habits", JSON.stringify(habits))
+            localStorage.setItem(`${currentUser}-habits`, JSON.stringify(habits))
         }
     }
 }
@@ -188,7 +193,7 @@ function increaseStreak(habitId) {
     if (habit) {
         habit.streak = (habit.streak) + 1
         streakP.innerText = habit.streak
-        localStorage.setItem("habits", JSON.stringify(habits))      //Updates the value in local storage
+        localStorage.setItem(`${currentUser}-habits`, JSON.stringify(habits))      //Updates the value in local storage
     }
 }
 
@@ -198,7 +203,7 @@ function decreaseStreak(habitId) {
     if (habit && habit.streak && habit.streak > 0) {
         habit.streak -= 1
         streakP.innerText = habit.streak
-        localStorage.setItem("habits", JSON.stringify(habits))      //Updates the value in local storage
+        localStorage.setItem(`${currentUser}-habits`, JSON.stringify(habits))      //Updates the value in local storage
     }
 }
 
@@ -207,7 +212,7 @@ function resetStreak(habitId){
     const streakP = document.querySelector(`#${habitId} > div > .streak`)
     habit.streak = 0
     streakP.innerText = habit.streak
-    localStorage.setItem("habits", JSON.stringify(habits))      //Updates the value in local storage
+    localStorage.setItem(`${currentUser}-habits`, JSON.stringify(habits))      //Updates the value in local storage
 }
 
 function editHabit(id, title, prio) {

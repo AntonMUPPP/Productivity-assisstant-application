@@ -418,9 +418,8 @@ nav > div:nth-child(2) > button:hover {
 }
 
 #profileName {
-  width: 50px;
   border: none;
-  margin: 0 15px 0 3px;
+  margin: 0 10px 0 5px;
   background: none;
 }
 
