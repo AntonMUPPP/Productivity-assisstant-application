@@ -275,9 +275,7 @@ a:hover {
   border-radius: 5px;
   margin: 20px 20px;
   margin: 20px auto;
-  /* Center the button horizontally */
   display: block;
-  /* Ensure the button takes up full width */
 }
 
 .add-todo-btn:hover {
@@ -295,11 +293,8 @@ a:hover {
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   z-index: 999;
-  /* Забезпечуємо вікну найвищий шар над іншими елементами */
   display: none;
-  /* Початково ховаємо вікно */
   width: 300px;
-  /* Задаємо ширину вікна */
 }
 
 .add-todo-window .close {
@@ -383,14 +378,10 @@ a:hover {
 }
 
 /*calendar style start*/
-/*calendar*/
-/* CSS стилі */
-/* Стилі для модального вікна календаря */
-#calendarModal {
-  width: 400px;
+.calendar {
+  width: 500px;
   height: auto;
   overflow-y: auto;
-  /* Додаємо вертикальний скролінг */
   position: fixed;
   display: flex;
   top: 0;
@@ -403,7 +394,7 @@ a:hover {
 }
 
 .modal-calendar-content {
-  background-color: white;
+  background-color: rgb(239, 221, 212);
   margin: 10% auto;
   padding: 30px;
   border: 1px solid #888;
@@ -411,8 +402,8 @@ a:hover {
   width: 80%;
 }
 
-.close-calendar {
-  color: #aaa;
+#calendarClose {
+  color: #b1a6a6;
   float: right;
   font-size: 18px;
   font-weight: bold;
@@ -425,7 +416,6 @@ a:hover {
   cursor: pointer;
 }
 
-/* Стилі для форми додавання події */
 #calendarForm {
   margin: auto;
   padding: 20px;
@@ -437,7 +427,7 @@ a:hover {
   margin-bottom: 5px;
 }
 
-form button {
+.calendar-saveBtn {
   width: 100%;
   margin-top: 10px;
   background-color: rgb(239, 239, 239);
@@ -449,38 +439,31 @@ form button {
   border-radius: 30px;
 }
 
-form button:hover {
+.calendar-saveBtn:hover {
   background-color: #7ae17f;
 }
 
-/* Стилі для зменшення розміру введення */
 input[type=text],
 input[type=datetime-local] {
   width: 180px;
-  /* Встановіть ширину введення на ваш вибір */
-}
-
-/* Стилі для списку подій */
-ul {
-  width: 250px;
 }
 
 .event-list-container {
   margin: 20px auto;
   padding: 30px;
-  width: 80%;
+  width: 100%;
   border: 1px solid #ccc;
   background-color: rgb(241, 238, 238);
   margin-bottom: 10px;
 }
 
-#upcomingEventList {
+.event-list-container li.future-event {
   background-color: rgb(167, 167, 226);
   width: auto;
   padding: 10px;
 }
 
-#pastEventList {
+.event-list-container li.past-event {
   background-color: #83dead;
   width: auto;
   padding: 10px;
@@ -492,9 +475,7 @@ ul {
 
 .event-time {
   color: #3b279f;
-  /* Колір тексту */
   margin-right: 10px;
-  /* Зміщення між "Start Time" та "End Time" */
 }
 
 .delete-event {
@@ -510,10 +491,8 @@ ul {
 
 .delete-event:hover {
   background-color: #cc0000;
-  /* Колір при наведенні */
 }
 
-/* Стилі для мобільної версії */
 @media only screen and (max-width: 600px) {
   input[type=text],
   input[type=datetime-local] {
@@ -522,12 +501,6 @@ ul {
   }
 }
 /*calendar style end*/
-/* Зміни для мобільних пристроїв */
-@media only screen and (max-width: 600px) {
-  .container {
-    max-width: 100%;
-  }
-}
 /* ----- style for header ----- */
 header {
   background: lightgray;

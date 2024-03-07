@@ -78,6 +78,15 @@ function deleteEvent(index) {
   // Display the updated list of events
   displayEvents();
 }
+function formatDate(date) {
+  const day = String(date.getDate()).padStart(2, "0");
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const year = date.getFullYear();
+  const hours = String(date.getHours()).padStart(2, "0");
+  const minutes = String(date.getMinutes()).padStart(2, "0");
+
+  return `${day}/${month}/${year} ${hours}:${minutes}`;
+}
 
 function displayEvents() {
   const eventList = document.getElementById("eventListCalendar");
@@ -89,21 +98,52 @@ function displayEvents() {
   // Split events into current and past events
   const currentEvents = [];
   const pastEvents = [];
-  events.forEach((event, index) => {
+  events.forEach((event) => {
     if (new Date(event.endTime) < currentTime) {
       pastEvents.push(event);
     } else {
       currentEvents.push(event);
     }
+  });
 
-    // Create list item for each event
+  // Sort currentEvents by start time
+  currentEvents.sort((a, b) => new Date(a.startTime) - new Date(b.startTime));
+
+  // Sort pastEvents by end time
+  pastEvents.sort((a, b) => new Date(b.endTime) - new Date(a.endTime));
+
+  // Display current events
+  currentEvents.forEach((event, index) => {
     const listItem = document.createElement("li");
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "Delete";
     deleteButton.classList.add("delete-event");
-    deleteButton.setAttribute("data-index", index); // Set data-index attribute
-    listItem.textContent = `${event.name} - ${event.startTime} to ${event.endTime}`;
+    deleteButton.setAttribute("data-index", index);
+    listItem.textContent = `${event.name} - ${formatDate(
+      new Date(event.startTime)
+    )} to ${formatDate(new Date(event.endTime))}`;
     listItem.appendChild(deleteButton);
+
+    if (new Date(event.startTime) > currentTime) {
+      listItem.classList.add("future-event"); // Add class for future events
+    } else {
+      listItem.classList.add("past-event"); // Add class for past events
+    }
+    eventList.appendChild(listItem);
+  });
+
+  // Display past events
+  pastEvents.forEach((event, index) => {
+    const listItem = document.createElement("li");
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "Delete";
+    deleteButton.classList.add("delete-event");
+    deleteButton.setAttribute("data-index", index + currentEvents.length);
+    listItem.textContent = `${event.name} - ${formatDate(
+      new Date(event.startTime)
+    )} to ${formatDate(new Date(event.endTime))}`;
+    listItem.appendChild(deleteButton);
+    listItem.classList.add("past-event");
     eventList.appendChild(listItem);
   });
 

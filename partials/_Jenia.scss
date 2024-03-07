@@ -172,10 +172,11 @@ a:hover {
 .close:hover {
   color: rgb(200, 168, 168);
 }
+
 /*calendar style start*/
 
-#calendarModal {
-  width: 400px;
+.calendar {
+  width: 500px;
   height: auto;
   overflow-y: auto;
   position: fixed;
@@ -190,7 +191,7 @@ a:hover {
 }
 
 .modal-calendar-content {
-  background-color: white;
+  background-color: rgb(239, 221, 212);
   margin: 10% auto;
   padding: 30px;
   border: 1px solid #888;
@@ -198,8 +199,8 @@ a:hover {
   width: 80%;
 }
 
-.close-calendar {
-  color: #aaa;
+#calendarClose {
+  color: #b1a6a6;
   float: right;
   font-size: 18px;
   font-weight: bold;
@@ -235,7 +236,7 @@ a:hover {
   border-radius: 30px;
 }
 
-calendar-saveBtn:hover {
+.calendar-saveBtn:hover {
   background-color: #7ae17f;
 }
 
@@ -244,26 +245,26 @@ input[type="datetime-local"] {
   width: 180px;
 }
 
-ul {
-  width: 250px;
-}
+// ul {
+//   width: 100%;
+// }
 
 .event-list-container {
   margin: 20px auto;
   padding: 30px;
-  width: 80%;
+  width: 100%;
   border: 1px solid #ccc;
   background-color: rgb(241, 238, 238);
   margin-bottom: 10px;
 }
 
-#upcomingEventList {
+.event-list-container li.future-event {
   background-color: rgb(167, 167, 226);
   width: auto;
   padding: 10px;
 }
 
-#pastEventList {
+.event-list-container li.past-event {
   background-color: #83dead;
   width: auto;
   padding: 10px;
