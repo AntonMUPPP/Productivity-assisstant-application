@@ -37,13 +37,15 @@ nav > div:nth-child(2) > button:hover{
 
 /* ----- style for main ----- */
 .main-container {
+    min-height: 100vh;
     background: url(https://images.unsplash.com/photo-1622547748225-3fc4abd2cca0?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHNpbXBsZXxlbnwwfHwwfHx8MA%3D%3D);
     background-position: left center;
     background-size: cover;
     background-repeat: no-repeat;
 }
 .main-container-inloggde {
-    background: url(https://images.unsplash.com/photo-1516541196182-6bdb0516ed27?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Njd8fHNpbXBsZXxlbnwwfHwwfHx8MA%3D%3D);
+    min-height: 100vh;
+    background: url(https://images.unsplash.com/photo-1512227201400-e0abf23f6677?w=1200&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODl8fHNpbXBsZXxlbnwwfHwwfHx8MA%3D%3D);
     background-color: rgb(255, 255, 255);
     background-position: center center;
     background-size: cover;
@@ -127,7 +129,7 @@ h2.apiGreating {
     margin-bottom: 50px;
 }
 
-#myTodosBtn, #myHabitsBtn,#myCalendarsBtn {
+#myTodosBtn, #myHabitsBtn {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;

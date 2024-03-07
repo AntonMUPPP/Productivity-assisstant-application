@@ -69,6 +69,7 @@
  const main = document.querySelector('#main')
  const loginDiv = document.querySelector('.main-inloggning');
  const inloggdeDiv = document.querySelector('.main-inloggde');
+ const calendarBtn = document.querySelector('#calendarBtn')
  const userInfo = document.querySelector('.user_info');
  const profileName = document.querySelector('#profileName');
  const signOutBtn = document.querySelector('#signOutBtn');
@@ -184,6 +185,7 @@ signOutBtn.addEventListener('click',() => {
 let userHomePage = () => {
   let currentUser = localStorage.getItem('loggedInUser');
   profileName.innerText = currentUser;
+  calendarBtn.style.display = 'inline-block'
   main.classList = 'main-container-inloggde'
   loginDiv.style.display = 'none';
   inloggdeDiv.style.display = 'inline-block';
