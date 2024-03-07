@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="calendar.js" defer></script>
+  </head>
+  <body>
+    <main>
+      <!--Calendar start-->
+      <div id="calendarModal" class="modal">
+        <div class="modal-calendar-content">
+          <button id="calendarClose" class="close-calendar">X</button>
+          <h2>Calendar</h2>
+          <!-- form for new event/todo -->
+          <form action="" id="calendarForm">
+            <label for="eventName">Event Name</label>
+            <input type="text" id="eventName" class="calendar-input" required />
+            <label for="eventStartTime">Start Time:</label>
+            <input
+              type="datetime-local"
+              id="eventStartTime"
+              class="calendar-input"
+              required
+            />
+            <label for="eventEndTime">End Time:</label>
+            <input
+              type="datetime-local"
+              id="eventEndTime"
+              class="calendar-input"
+              required
+            />
+            <button type="submit">Add Event</button>
+          </form>
+          <!--event list-->
+          <div class="event-list-container">
+            <ul id="eventListCalendar"></ul>
+          </div>
+        </div>
+      </div>
+      <!--calendar end-->
+    </main>
+  </body>
+</html>
