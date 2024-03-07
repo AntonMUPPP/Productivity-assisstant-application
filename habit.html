@@ -24,7 +24,7 @@
         </div>
         <div>
           <button>Calender</button>
-          <button>Pomodoro timer</button>
+          <button onclick="toggleTimerWindow()">Timer</button>
         </div>
         <div class="user_info">
           <i class="fa-solid fa-user"
@@ -78,6 +78,17 @@
           <button id="addHabitButton" onclick="addHabit()">Add Habit</button>
         </div>
         <div class="habit-container"></div>
+      </div>
+      <div class="overlay"></div>
+      <div class="timer" style="display: none;">
+        <button class="close" onclick="toggleTimerWindow()">X</button>
+        <div class="timer-option-container">
+          <button class="set-time-btn" onclick="setTimer(25)">25:00</button>
+          <button class="set-time-btn" onclick="setTimer(15)">15:00</button>
+          <button class="set-time-btn" onclick="setTimer(5)">5:00</button>
+        </div>
+        <p class="timer-text">00:00</p>
+        <button class="timer-use-btn" onclick="toggleTimer()">Start</button>
       </div>
     </main>
   </body>
