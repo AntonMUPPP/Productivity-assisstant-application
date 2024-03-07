@@ -9,6 +9,7 @@
     ></script>
     <link rel="stylesheet" href="styles.css" />
     <script src="anton.js" defer></script>
+    <script src="timer.js" defer></script>
     <title>My habits</title>
   </head>
   <body>
@@ -24,7 +25,7 @@
         </div>
         <div>
           <button>Calender</button>
-          <button onclick="toggleTimerWindow()">Timer</button>
+          <button onclick="toggleTimerWindow()">Pomodoro Timer</button>
         </div>
         <div class="user_info">
           <i class="fa-solid fa-user"
@@ -57,7 +58,7 @@
           </select>
         </div>
         <div class="add-habit-window">
-          <button class="close" onclick="toggleHabitWindow()">X</button>
+          <button class="closeBtn" onclick="toggleHabitWindow()">X</button>
           <h2>Add habit</h2>
           <form id="habitform">
             <div class="habit-inputs">
@@ -80,8 +81,8 @@
         <div class="habit-container"></div>
       </div>
       <div class="overlay"></div>
-      <div class="timer" style="display: none;">
-        <button class="close" onclick="toggleTimerWindow()">X</button>
+      <div class="timer" style="display: none">
+        <button class="closeBtn" onclick="toggleTimerWindow()">X</button>
         <div class="timer-option-container">
           <button class="set-time-btn" onclick="setTimer(25)">25:00</button>
           <button class="set-time-btn" onclick="setTimer(15)">15:00</button>

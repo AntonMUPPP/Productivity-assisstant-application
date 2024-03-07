@@ -221,3 +221,4 @@ fetch('https://api.quotable.io/random')
     apiQuote.innerHTML = `"${quote}"`;
 })
 .catch(error => console.error('Error fetching quote:', error));
+

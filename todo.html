@@ -10,6 +10,7 @@
     ></script>
     <link rel="stylesheet" href="styles.css" />
     <script src="jenia.js" defer></script>
+    <script src="timer.js" defer></script>
   </head>
   <body>
     <header>
@@ -24,7 +25,7 @@
         </div>
         <div>
           <button>Calender</button>
-          <button>Pomodoro timer</button>
+          <button onclick="toggleTimerWindow()">Pomodoro Timer</button>
         </div>
         <div class="user_info">
           <i class="fa-solid fa-user"
@@ -144,6 +145,17 @@
             <div class="todo-container"></div>
           </div>
         </div>
+      </div>
+      <div class="overlay"></div>
+      <div class="timer" style="display: none">
+        <button class="closeBtn" onclick="toggleTimerWindow()">X</button>
+        <div class="timer-option-container">
+          <button class="set-time-btn" onclick="setTimer(25)">25:00</button>
+          <button class="set-time-btn" onclick="setTimer(15)">15:00</button>
+          <button class="set-time-btn" onclick="setTimer(5)">5:00</button>
+        </div>
+        <p class="timer-text">00:00</p>
+        <button class="timer-use-btn" onclick="toggleTimer()">Start</button>
       </div>
     </main>
   </body>
