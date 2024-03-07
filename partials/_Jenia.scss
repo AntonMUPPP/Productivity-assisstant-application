@@ -71,9 +71,7 @@ a:hover {
   border-radius: 5px;
   margin: 20px 20px;
   margin: 20px auto;
-  /* Center the button horizontally */
   display: block;
-  /* Ensure the button takes up full width */
 }
 
 .add-todo-btn:hover {
@@ -91,11 +89,8 @@ a:hover {
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   z-index: 999;
-  /* Забезпечуємо вікну найвищий шар над іншими елементами */
   display: none;
-  /* Початково ховаємо вікно */
   width: 300px;
-  /* Задаємо ширину вікна */
 }
 
 .add-todo-window .close {
