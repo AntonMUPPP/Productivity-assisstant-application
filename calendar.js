@@ -86,24 +86,45 @@ function displayEvents() {
   const events = JSON.parse(localStorage.getItem("events")) || [];
   const currentTime = new Date(); // Current time
 
-  // Split events into current and past events
+  // Create arrays for current and past events
   const currentEvents = [];
   const pastEvents = [];
+
   events.forEach((event, index) => {
     if (new Date(event.endTime) < currentTime) {
       pastEvents.push(event);
     } else {
       currentEvents.push(event);
     }
+  });
 
-    // Create list item for each event
+  // Sort events by start time
+  currentEvents.sort((a, b) => new Date(a.startTime) - new Date(b.startTime));
+  pastEvents.sort((a, b) => new Date(b.endTime) - new Date(a.endTime));
+
+  // Function to create event list item
+  function createEventListItem(event, index) {
     const listItem = document.createElement("li");
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "Delete";
     deleteButton.classList.add("delete-event");
-    deleteButton.setAttribute("data-index", index); // Set data-index attribute
+    deleteButton.setAttribute("data-index", index);
     listItem.textContent = `${event.name} - ${event.startTime} to ${event.endTime}`;
     listItem.appendChild(deleteButton);
+    return listItem;
+  }
+
+  // Create list items for current events
+  currentEvents.forEach((event, index) => {
+    const listItem = createEventListItem(event, index);
+    listItem.classList.add("future-event");
+    eventList.appendChild(listItem);
+  });
+
+  // Create list items for past events
+  pastEvents.forEach((event, index) => {
+    const listItem = createEventListItem(event, index);
+    listItem.classList.add("past-event");
     eventList.appendChild(listItem);
   });
 

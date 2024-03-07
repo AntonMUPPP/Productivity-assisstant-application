@@ -257,13 +257,13 @@ ul {
   margin-bottom: 10px;
 }
 
-#upcomingEventList {
+.event-list-container li.future-event {
   background-color: rgb(167, 167, 226);
   width: auto;
   padding: 10px;
 }
 
-#pastEventList {
+.event-list-container li.past-event {
   background-color: #83dead;
   width: auto;
   padding: 10px;
