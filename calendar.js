@@ -68,7 +68,17 @@ function addEvent() {
   displayEvents();
 }
 
-// Function to display events in the calendar window
+// Function to delete an event
+function deleteEvent(index) {
+  const events = JSON.parse(localStorage.getItem("events")) || [];
+  // Remove the event at the specified index from the events array
+  events.splice(index, 1);
+  // Save the updated events to local storage
+  localStorage.setItem("events", JSON.stringify(events));
+  // Display the updated list of events
+  displayEvents();
+}
+
 function displayEvents() {
   const eventList = document.getElementById("eventListCalendar");
   eventList.innerHTML = ""; // Clear previously displayed events
@@ -79,37 +89,32 @@ function displayEvents() {
   // Split events into current and past events
   const currentEvents = [];
   const pastEvents = [];
-  events.forEach((event) => {
+  events.forEach((event, index) => {
     if (new Date(event.endTime) < currentTime) {
       pastEvents.push(event);
     } else {
       currentEvents.push(event);
     }
+
+    // Create list item for each event
+    const listItem = document.createElement("li");
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "Delete";
+    deleteButton.classList.add("delete-event");
+    deleteButton.setAttribute("data-index", index); // Set data-index attribute
+    listItem.textContent = `${event.name} - ${event.startTime} to ${event.endTime}`;
+    listItem.appendChild(deleteButton);
+    eventList.appendChild(listItem);
   });
 
-  // Display current events
-  if (currentEvents.length > 0) {
-    const currentEventsHeader = document.createElement("h3");
-    currentEventsHeader.textContent = "Current Events";
-    eventList.appendChild(currentEventsHeader);
-    currentEvents.forEach((event) => {
-      const listItem = document.createElement("li");
-      listItem.textContent = `${event.name} - ${event.startTime} to ${event.endTime}`;
-      eventList.appendChild(listItem);
+  // Event listener for delete buttons
+  const deleteButtons = document.querySelectorAll(".delete-event");
+  deleteButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      const index = parseInt(button.getAttribute("data-index"));
+      deleteEvent(index);
     });
-  }
-
-  // Display past events
-  if (pastEvents.length > 0) {
-    const pastEventsHeader = document.createElement("h3");
-    pastEventsHeader.textContent = "Past Events";
-    eventList.appendChild(pastEventsHeader);
-    pastEvents.forEach((event) => {
-      const listItem = document.createElement("li");
-      listItem.textContent = `${event.name} - ${event.startTime} to ${event.endTime}`;
-      eventList.appendChild(listItem);
-    });
-  }
+  });
 }
 
 // Add an event listener for the event form submission
