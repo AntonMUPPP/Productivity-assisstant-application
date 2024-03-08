@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="styles.css" />
     <script src="Shishi.js" defer></script>
     <script src="timer.js" defer></script>
+    <script src="calendar.js" defer></script>
   </head>
   <body>
     <header>
@@ -24,7 +25,7 @@
           <span id="weather-text">Loading...</span>
         </div>
         <div>
-          <button>Calender</button>
+          <button onclick="calendarWindow()">Calendar</button>
           <button onclick="toggleTimerWindow()">Pomodoro Timer</button>
         </div>
         <div class="user_info" style="display: none">
@@ -71,6 +72,50 @@
         <p class="timer-text">00:00</p>
         <button class="timer-use-btn" onclick="toggleTimer()">Start</button>
       </div>
+      <!--Calendar start-->
+      <div class="overlayCalendar"></div>
+      <div id="calendarModal" class="calendar" style="display: none">
+        <div class="modal-calendar-content">
+          <button
+            id="calendarClose"
+            class="close-calendar"
+            onclick="calendarWindow()"
+          >
+            X
+          </button>
+          <h2>Calendar</h2>
+          <!-- form for new event-->
+          <form action="" id="calendarForm">
+            <label for="eventName">Event Name</label>
+            <input type="text" id="eventName" class="calendar-input" required />
+            <label for="eventStartTime">Start Time:</label>
+            <input
+              type="datetime-local"
+              id="eventStartTime"
+              class="calendar-input"
+              required
+            />
+            <label for="eventEndTime">End Time:</label>
+            <input
+              type="datetime-local"
+              id="eventEndTime"
+              class="calendar-input"
+              required
+            />
+            <button type="submit" class="calendar-saveBtn">Add Event</button>
+          </form>
+          <!--event list-->
+          <div class="event-list-container">
+            <ul id="eventListCalendar">
+              <li>
+                <span>Event Name - Start Time to End Time</span>
+                <button class="delete-event">Delete</button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!--calendar end-->
     </main>
   </body>
 </html>
