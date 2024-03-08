@@ -49,7 +49,7 @@ function addEvent() {
 
   // If there's a conflict, show an alert and return without adding the event
   if (hasConflict) {
-    alert("You have already an event at this time");
+    alert("You already have an event at this time");
     return;
   }
 
@@ -71,13 +71,30 @@ function addEvent() {
 // Function to delete an event
 function deleteEvent(index) {
   const events = JSON.parse(localStorage.getItem("events")) || [];
+
+  // Check if the index is valid
+  if (index < 0 || index >= events.length) {
+    console.error("Invalid event index:", index);
+    return;
+  }
+
   // Remove the event at the specified index from the events array
   events.splice(index, 1);
   // Save the updated events to local storage
   localStorage.setItem("events", JSON.stringify(events));
-  // Display the updated list of events
+  // Update the display of events
   displayEvents();
 }
+
+// Function to update delete buttons
+function updateDeleteButtons() {
+  const deleteButtons = document.querySelectorAll(".delete-event");
+  deleteButtons.forEach((button, index) => {
+    button.setAttribute("data-index", index);
+  });
+}
+
+// Function to format date
 function formatDate(date) {
   const day = String(date.getDate()).padStart(2, "0");
   const month = String(date.getMonth() + 1).padStart(2, "0");
@@ -88,6 +105,7 @@ function formatDate(date) {
   return `${day}/${month}/${year} ${hours}:${minutes}`;
 }
 
+// Function to display events
 function displayEvents() {
   const eventList = document.getElementById("eventListCalendar");
   eventList.innerHTML = ""; // Clear previously displayed events
@@ -114,16 +132,7 @@ function displayEvents() {
 
   // Display current events
   currentEvents.forEach((event, index) => {
-    const listItem = document.createElement("li");
-    const deleteButton = document.createElement("button");
-    deleteButton.textContent = "Delete";
-    deleteButton.classList.add("delete-event");
-    deleteButton.setAttribute("data-index", index);
-    listItem.textContent = `${event.name} - ${formatDate(
-      new Date(event.startTime)
-    )} to ${formatDate(new Date(event.endTime))}`;
-    listItem.appendChild(deleteButton);
-
+    const listItem = createEventListItem(event, index);
     if (new Date(event.startTime) > currentTime) {
       listItem.classList.add("future-event"); // Add class for future events
     } else {
@@ -134,15 +143,7 @@ function displayEvents() {
 
   // Display past events
   pastEvents.forEach((event, index) => {
-    const listItem = document.createElement("li");
-    const deleteButton = document.createElement("button");
-    deleteButton.textContent = "Delete";
-    deleteButton.classList.add("delete-event");
-    deleteButton.setAttribute("data-index", index + currentEvents.length);
-    listItem.textContent = `${event.name} - ${formatDate(
-      new Date(event.startTime)
-    )} to ${formatDate(new Date(event.endTime))}`;
-    listItem.appendChild(deleteButton);
+    const listItem = createEventListItem(event, index + currentEvents.length); // Update index
     listItem.classList.add("past-event");
     eventList.appendChild(listItem);
   });
@@ -151,8 +152,9 @@ function displayEvents() {
   const deleteButtons = document.querySelectorAll(".delete-event");
   deleteButtons.forEach((button) => {
     button.addEventListener("click", function () {
-      const index = parseInt(button.getAttribute("data-index"));
-      deleteEvent(index);
+      const indexToDelete = parseInt(button.getAttribute("data-index"));
+      console.log("Button clicked at index:", indexToDelete);
+      deleteEvent(indexToDelete);
     });
   });
 }
@@ -166,3 +168,20 @@ document
     // Call the function to add an event
     addEvent();
   });
+
+// Function to create event list item
+function createEventListItem(event, index) {
+  const listItem = document.createElement("li");
+  const deleteButton = document.createElement("button");
+  deleteButton.textContent = "Delete";
+  deleteButton.classList.add("delete-event");
+  deleteButton.setAttribute("data-index", index); // Додайте індекс до кнопки видалення
+  listItem.textContent = `${event.name} - ${formatDate(
+    new Date(event.startTime)
+  )} to ${formatDate(new Date(event.endTime))}`;
+  listItem.appendChild(deleteButton);
+  return listItem;
+}
+
+// Initial display of events when the page loads
+displayEvents();
