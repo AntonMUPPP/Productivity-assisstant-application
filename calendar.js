@@ -25,6 +25,12 @@ function addEvent() {
   );
   const eventEndTime = new Date(document.getElementById("eventEndTime").value);
 
+  // Check if the end time is earlier than the start time
+  if (eventEndTime <= eventStartTime) {
+    alert("End time should be later than start time");
+    return;
+  }
+
   // Retrieve existing events from local storage
   const existingEvents = JSON.parse(localStorage.getItem("events")) || [];
 
