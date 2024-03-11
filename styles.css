@@ -17,7 +17,7 @@ body {
 .timer {
   border-radius: 16px;
   width: 400px;
-  height: 500px;
+  height: 300px;
   background-color: lightgray;
   position: absolute;
   left: 50%;
@@ -28,15 +28,16 @@ body {
   justify-content: space-between;
   align-items: center;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
 }
 .timer button {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
 }
 
 .timer-option-container {
   width: 100%;
   height: 60px;
-  background-color: #003e52;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -45,12 +46,12 @@ body {
 }
 .timer-option-container button {
   color: white;
-  background-color: gray;
+  background-color: #6D6D6D;
   border: none;
   border-radius: 4px;
 }
 .timer-option-container button:hover {
-  background-color: #444444;
+  background-color: black;
 }
 
 .set-time-btn {
@@ -66,13 +67,13 @@ body {
   width: 180px;
   height: 60px;
   margin-bottom: 16px;
-  background-color: gray;
+  background-color: #6D6D6D;
   border: none;
   border-radius: 16px;
   color: white;
 }
 .timer-use-btn:hover {
-  background-color: #444444;
+  background-color: black;
 }
 
 .overlay {
@@ -94,8 +95,8 @@ body {
   min-height: 100vh;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   display: flex;
-  justify-content: center;
-  gap: 48px;
+  flex-direction: column;
+  align-items: center;
   position: relative;
   padding-top: 36px;
 }
@@ -107,6 +108,7 @@ body {
   width: fit-content;
   gap: 16px;
   padding: 12px;
+  width: 1200px;
 }
 .habit-option-container a {
   text-decoration: none;
@@ -115,14 +117,15 @@ body {
 .habit-option-container button {
   padding: 8px;
   border-radius: 8px;
-  width: 100px;
+  width: 140px;
   border: none;
-  background-color: gray;
-  background-color: #4CAF50;
+  font-size: 18px;
+  color: white;
+  background-color: #CC0000;
+  align-self: center;
 }
 .habit-option-container button:hover {
-  background-color: lightgray;
-  background-color: #45a049;
+  background-color: #a10000;
 }
 .habit-option-container select {
   width: -moz-fit-content;
@@ -131,12 +134,22 @@ body {
   background-color: lightgray;
   padding: 12px;
   border-radius: 8px;
+  align-self: flex-end;
 }
-.habit-option-container #back-btn, .habit-option-container #filter-btn {
-  background-color: gray;
+.habit-option-container #back-btn {
+  align-self: auto;
+  background-color: transparent;
+  color: black;
 }
-.habit-option-container #back-btn:hover, .habit-option-container #filter-btn:hover {
-  background-color: lightgray;
+.habit-option-container #back-btn:hover {
+  cursor: pointer;
+}
+.habit-option-container #filter-btn {
+  background-color: black;
+  align-self: auto;
+}
+.habit-option-container #filter-btn:hover {
+  background-color: #282828;
 }
 
 .filter-text {
@@ -147,8 +160,8 @@ body {
   width: 40vw;
   height: -moz-fit-content;
   height: fit-content;
-  min-height: 60vh;
-  background-color: lightgray;
+  width: -moz-fit-content;
+  width: fit-content;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -160,12 +173,12 @@ body {
 }
 
 .habit {
-  background-color: white;
-  width: 400px;
+  background-color: lightgray;
+  width: 1200px;
   height: -moz-fit-content;
   height: fit-content;
-  padding: 12px;
-  border-radius: 4px;
+  padding: 48px;
+  border-radius: 12px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -180,15 +193,13 @@ body {
   right: 0;
   margin: 10px;
   padding: 4px;
-  background-color: #a90c0c;
+  background-color: #CC0000;
   border: none;
   border-radius: 4px;
-}
-.habit .delete-btn i {
   color: white;
 }
 .habit .delete-btn:hover {
-  background-color: #880f0f;
+  background-color: #a10000;
 }
 .habit .edit-btn {
   position: absolute;
@@ -196,37 +207,46 @@ body {
   right: 0;
   margin: 10px;
   padding: 6px;
-  background-color: gray;
+  color: white;
+  background-color: black;
   border: none;
   border-radius: 4px;
 }
 .habit .edit-btn:hover {
-  background-color: lightgray;
+  background-color: #282828;
+}
+.habit #streakTitle {
+  margin-right: 12px;
 }
 .habit .decrease-streak-btn, .habit .increase-streak-btn {
   color: white;
   padding: 4px;
-  background-color: gray;
+  font-weight: bold;
+  background-color: black;
   border: none;
-  border-radius: 4px;
 }
 .habit .decrease-streak-btn:hover, .habit .increase-streak-btn:hover {
-  background-color: lightgray;
+  background-color: #282828;
 }
 .habit .reset-streak-btn {
   padding: 4px;
-  background-color: #a90c0c;
+  background-color: black;
   color: white;
   border: none;
-  border-radius: 4px;
+  margin-left: 24px;
 }
 .habit .reset-streak-btn:hover {
-  background-color: #880f0f;
+  background-color: #282828;
+}
+
+.streak {
+  background-color: white;
+  width: 24px;
+  text-align: center;
 }
 
 .streak-container {
   display: flex;
-  gap: 4px;
   font-size: 18px;
 }
 
@@ -241,13 +261,21 @@ body {
   position: absolute;
   z-index: 100;
   margin-top: 200px;
+  padding: 49px;
+}
+.add-habit-window h2 {
+  margin-bottom: 24px;
 }
 .add-habit-window #addHabitButton {
-  background-color: gray;
+  color: white;
+  background-color: black;
+  width: 120px;
   border: none;
-  border-radius: 24px;
+  border-radius: 12px;
   padding: 12px;
   font-size: 18px;
+  align-self: center;
+  margin-top: 24px;
 }
 .add-habit-window #addHabitButton:hover {
   background-color: #444444;
@@ -260,13 +288,13 @@ body {
   top: 0px;
   width: 20px;
   height: 20px;
-  background-color: gray;
+  background-color: #CC0000;
   border: none;
   border-radius: 4px;
   color: white;
 }
 .closeBtn:hover {
-  background-color: #444444;
+  background-color: #a10000;
 }
 
 .habit-inputs {
@@ -281,7 +309,7 @@ body {
   padding: 8px;
   border: 1px solid darkgray;
   background-color: white;
-  padding: 12px;
+  padding: 8px;
   border-radius: 8px;
 }
 

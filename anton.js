@@ -106,13 +106,13 @@ function renderFilteredHabits(filteredHabitsArr){
 
     filteredHabitsArr.forEach(habit => {
         const habitElement = document.createElement("div")      //Creates the habit element for each in the array
-        habitElement.classList.add("habit", `habit-${habit.prio}`)     //Gives it the proper class
+        habitElement.classList.add("habit")     //Gives it the proper class
 
         habitElement.innerHTML = `
             <button class="delete-btn" onclick="deleteHabit('${habit.id}')"><i class="fa-solid fa-xmark"></i></button>
             <h2>${habit.title}</h2>
             <div class="streak-container">
-                <p>Streak:</p>
+                <p id="streakTitle">Streak:</p>
                 <button class="decrease-streak-btn" onclick="decreaseStreak('${habit.id}')">-</button>
                 <p class="streak">${habit.streak || 0}</p>
                 <button class="increase-streak-btn" onclick="increaseStreak('${habit.id}')">+</button>
