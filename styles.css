@@ -18,7 +18,7 @@ body {
   border-radius: 16px;
   width: 400px;
   height: 500px;
-  background-color: #035E7B;
+  background-color: lightgray;
   position: absolute;
   left: 50%;
   top: 50%;
@@ -50,7 +50,7 @@ body {
   border-radius: 4px;
 }
 .timer-option-container button:hover {
-  background-color: lightgray;
+  background-color: #444444;
 }
 
 .set-time-btn {
@@ -72,7 +72,7 @@ body {
   color: white;
 }
 .timer-use-btn:hover {
-  background-color: lightgray;
+  background-color: #444444;
 }
 
 .overlay {
@@ -86,16 +86,25 @@ body {
 }
 
 .habit-page-container {
+  background: url(https://images.unsplash.com/photo-1516541196182-6bdb0516ed27?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Njd8fHNpbXBsZXxlbnwwfHwwfHx8MA%3D%3D);
+  background-color: rgb(255, 255, 255);
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center;
+  gap: 48px;
   position: relative;
+  padding-top: 36px;
 }
 
 .habit-option-container {
   display: flex;
   flex-direction: column;
-  width: 80vw;
+  width: -moz-fit-content;
+  width: fit-content;
   gap: 16px;
   padding: 12px;
 }
@@ -109,17 +118,33 @@ body {
   width: 100px;
   border: none;
   background-color: gray;
+  background-color: #4CAF50;
 }
 .habit-option-container button:hover {
   background-color: lightgray;
+  background-color: #45a049;
 }
 .habit-option-container select {
   width: -moz-fit-content;
   width: fit-content;
+  border: none;
+  background-color: lightgray;
+  padding: 12px;
+  border-radius: 8px;
+}
+.habit-option-container #back-btn, .habit-option-container #filter-btn {
+  background-color: gray;
+}
+.habit-option-container #back-btn:hover, .habit-option-container #filter-btn:hover {
+  background-color: lightgray;
+}
+
+.filter-text {
+  font-weight: bold;
 }
 
 .habit-container {
-  width: 80vw;
+  width: 40vw;
   height: -moz-fit-content;
   height: fit-content;
   min-height: 60vh;
@@ -131,11 +156,12 @@ body {
   position: relative;
   padding: 24px;
   margin-bottom: 24px;
+  border-radius: 16px;
 }
 
 .habit {
   background-color: white;
-  width: 600px;
+  width: 400px;
   height: -moz-fit-content;
   height: fit-content;
   padding: 12px;
@@ -153,32 +179,78 @@ body {
   top: 0;
   right: 0;
   margin: 10px;
+  padding: 4px;
+  background-color: #a90c0c;
+  border: none;
+  border-radius: 4px;
+}
+.habit .delete-btn i {
+  color: white;
+}
+.habit .delete-btn:hover {
+  background-color: #880f0f;
 }
 .habit .edit-btn {
   position: absolute;
   bottom: 0;
   right: 0;
   margin: 10px;
+  padding: 6px;
+  background-color: gray;
+  border: none;
+  border-radius: 4px;
+}
+.habit .edit-btn:hover {
+  background-color: lightgray;
+}
+.habit .decrease-streak-btn, .habit .increase-streak-btn {
+  color: white;
+  padding: 4px;
+  background-color: gray;
+  border: none;
+  border-radius: 4px;
+}
+.habit .decrease-streak-btn:hover, .habit .increase-streak-btn:hover {
+  background-color: lightgray;
+}
+.habit .reset-streak-btn {
+  padding: 4px;
+  background-color: #a90c0c;
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+.habit .reset-streak-btn:hover {
+  background-color: #880f0f;
 }
 
 .streak-container {
   display: flex;
   gap: 4px;
+  font-size: 18px;
 }
 
 .add-habit-window {
-  width: 250px;
-  height: -moz-fit-content;
-  height: fit-content;
+  width: 400px;
+  height: 300px;
   padding: 12px;
-  background-color: olive;
+  background-color: lightgray;
   display: none;
   flex-direction: column;
-  gap: 16px;
+  justify-content: space-evenly;
   position: absolute;
   z-index: 100;
   margin-top: 200px;
-  box-shadow: 0px 0px 300px 120px gray;
+}
+.add-habit-window #addHabitButton {
+  background-color: gray;
+  border: none;
+  border-radius: 24px;
+  padding: 12px;
+  font-size: 18px;
+}
+.add-habit-window #addHabitButton:hover {
+  background-color: #444444;
 }
 
 .closeBtn {
@@ -191,15 +263,26 @@ body {
   background-color: gray;
   border: none;
   border-radius: 4px;
+  color: white;
 }
 .closeBtn:hover {
-  background-color: lightgray;
+  background-color: #444444;
 }
 
 .habit-inputs {
   display: flex;
   flex-direction: column;
   gap: 16px;
+}
+.habit-inputs input {
+  padding: 8px;
+}
+.habit-inputs select {
+  padding: 8px;
+  border: 1px solid darkgray;
+  background-color: white;
+  padding: 12px;
+  border-radius: 8px;
 }
 
 .my-todos {

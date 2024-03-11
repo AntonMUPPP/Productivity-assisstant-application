@@ -7,6 +7,9 @@
       src="https://kit.fontawesome.com/a2d649a589.js"
       crossorigin="anonymous"
     ></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css" />
     <script src="anton.js" defer></script>
     <script src="calendar.js" defer></script>
@@ -37,11 +40,11 @@
       </nav>
     </header>
     <main>
-      <button onclick="goBack()">Back</button>
       <div class="habit-page-container">
         <div class="habit-option-container">
-          <button onclick="toggleHabitWindow()">Add Habit</button>
-          <p>Filter by priority:</p>
+          <button id="back-btn" onclick="goBack()">Back</button>
+          <button id="add-habit-btn" onclick="toggleHabitWindow()">Add Habit</button>
+          <p class="filter-text">Filter by priority:</p>
           <div>
             <label for="low">Low</label>
             <input type="checkbox" name="priority" id="low" value="low" />
@@ -50,7 +53,7 @@
             <label for="high">High</label>
             <input type="checkbox" name="priority" id="high" value="high" />
           </div>
-          <button onclick="filterHabits()">Filter</button>
+          <button id="filter-btn" onclick="filterHabits()">Filter</button>
           <select name="sort" id="sortSelect" onchange="sortHabits()">
             <option value="streakAsc">Habit streak - Ascending</option>
             <option value="streakDesc">Habit streak - Descending</option>
@@ -59,7 +62,7 @@
           </select>
         </div>
         <div class="add-habit-window">
-          <button class="closeBtn" onclick="toggleHabitWindow()">X</button>
+          <button class="closeBtn" onclick="toggleHabitWindow()"><i class="fa-solid fa-xmark"></i></button>
           <h2>Add habit</h2>
           <form id="habitform">
             <div class="habit-inputs">
@@ -83,7 +86,7 @@
       </div>
       <div class="overlay"></div>
       <div class="timer" style="display: none">
-        <button class="closeBtn" onclick="toggleTimerWindow()">X</button>
+        <button class="closeBtn" onclick="toggleTimerWindow()"><i class="fa-solid fa-xmark"></i></button>
         <div class="timer-option-container">
           <button class="set-time-btn" onclick="setTimer(25)">25:00</button>
           <button class="set-time-btn" onclick="setTimer(15)">15:00</button>
