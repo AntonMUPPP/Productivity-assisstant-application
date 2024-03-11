@@ -33,6 +33,7 @@ function addEvent() {
     return;
   }
 
+  // Retrieve existing events from local storage
   const existingEvents = JSON.parse(localStorage.getItem("events")) || [];
 
   // Check for event conflicts
@@ -77,20 +78,17 @@ function addEvent() {
 }
 
 // Function to delete an event from the calendar
-function deleteEvent(id) {
-  let events = JSON.parse(localStorage.getItem("events")) || [];
-
-  // Find the index of the event with the specified id
-  const indexToDelete = events.findIndex((event) => event.id === id);
+function deleteEvent(index) {
+  const events = JSON.parse(localStorage.getItem("events")) || [];
 
   // Check if the index is valid
-  if (indexToDelete === -1) {
-    console.error("Event not found:", id);
+  if (index < 0 || index >= events.length) {
+    console.error("Invalid event index:", index);
     return;
   }
 
   // Remove the event at the specified index
-  events.splice(indexToDelete, 1);
+  events.splice(index, 1);
 
   // Save the updated events list to local storage
   localStorage.setItem("events", JSON.stringify(events));
@@ -149,10 +147,13 @@ function displayEvents() {
 
   // Display past events
   pastEvents.forEach((event, index) => {
-    const listItem = createEventListItem(event, index);
+    const listItem = createEventListItem(event, index + currentEvents.length);
     listItem.classList.add("past-event");
     eventList.appendChild(listItem);
   });
+
+  // Update delete buttons
+  updateDeleteButtons();
 }
 
 // Function to create an event list item
@@ -161,7 +162,7 @@ function createEventListItem(event, index) {
   const deleteButton = document.createElement("button");
   deleteButton.textContent = "Delete";
   deleteButton.classList.add("delete-event");
-  deleteButton.dataset.id = event.id; // Set event id as data attribute
+  deleteButton.setAttribute("data-index", index); // Add index to delete button
   // Display event name and time range
   listItem.textContent = `${event.name} - ${formatDate(
     new Date(event.startTime)
@@ -171,6 +172,20 @@ function createEventListItem(event, index) {
   return listItem;
 }
 
+// Function to update delete buttons
+function updateDeleteButtons() {
+  const deleteButtons = document.querySelectorAll(".delete-event");
+  deleteButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      const index = parseInt(button.getAttribute("data-index"));
+      deleteEvent(index);
+    });
+  });
+}
+
+// Initial display of events when the page loads
+displayEvents();
+
 // Event listener for submitting the calendar form
 document
   .getElementById("calendarForm")
@@ -178,16 +193,3 @@ document
     event.preventDefault();
     addEvent();
   });
-
-// Event listener for clicking on the delete button
-document
-  .getElementById("eventListCalendar")
-  .addEventListener("click", function (event) {
-    if (event.target.classList.contains("delete-event")) {
-      const eventId = parseInt(event.target.dataset.id, 10);
-      deleteEvent(eventId);
-    }
-  });
-
-// Initial display of events when the page loads
-displayEvents();
