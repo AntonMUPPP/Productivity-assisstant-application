@@ -191,7 +191,7 @@ a:hover {
 }
 
 .modal-calendar-content {
-  background-color: rgb(239, 221, 212);
+  background-color: $canvas;
   margin: 10% auto;
   padding: 30px;
   border: 1px solid #888;
@@ -216,28 +216,29 @@ a:hover {
 #calendarForm {
   margin: auto;
   padding: 20px;
-  background-color: #d3d3d3;
+  border: solid #d1d2d2;
 }
 
 #calendarForm label {
   display: block;
   margin-bottom: 5px;
+  color: $Text-primary;
 }
 
 .calendar-saveBtn {
   width: 100%;
   margin-top: 10px;
-  background-color: rgb(239, 239, 239);
+  background-color: $color-background-NiceToHaveBtn;
   color: black;
   padding: 10px 20px;
   border: 1px solid #353836;
   /* Товщина, колір та стиль рамки */
   cursor: pointer;
-  border-radius: 30px;
+  border-radius: 10px;
 }
 
 .calendar-saveBtn:hover {
-  background-color: #7ae17f;
+  background-color: $color-hover-button;
 }
 
 input[type="text"],
@@ -253,8 +254,6 @@ input[type="datetime-local"] {
   margin: 20px auto;
   padding: 30px;
   width: 100%;
-  border: 1px solid #ccc;
-  background-color: rgb(241, 238, 238);
   margin-bottom: 10px;
 }
 
@@ -263,7 +262,6 @@ input[type="datetime-local"] {
   width: auto;
   padding: 10px;
 }
-
 .event-list-container li.past-event {
   background-color: #a4a7a6;
   width: auto;
@@ -280,7 +278,7 @@ input[type="datetime-local"] {
 }
 
 .delete-event {
-  background-color: #5f5c5c;
+  background-color: #cc0000;
   color: #fff;
   border: none;
   padding: 5px 10px;
@@ -291,7 +289,7 @@ input[type="datetime-local"] {
 }
 
 .delete-event:hover {
-  background-color: #cc0000;
+  background-color: #808080;
 }
 
 @media only screen and (max-width: 600px) {

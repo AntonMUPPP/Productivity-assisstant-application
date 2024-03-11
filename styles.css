@@ -504,7 +504,7 @@ a:hover {
 }
 
 .modal-calendar-content {
-  background-color: rgb(239, 221, 212);
+  background-color: white;
   margin: 10% auto;
   padding: 30px;
   border: 1px solid #888;
@@ -529,28 +529,29 @@ a:hover {
 #calendarForm {
   margin: auto;
   padding: 20px;
-  background-color: #d3d3d3;
+  border: solid #d1d2d2;
 }
 
 #calendarForm label {
   display: block;
   margin-bottom: 5px;
+  color: black;
 }
 
 .calendar-saveBtn {
   width: 100%;
   margin-top: 10px;
-  background-color: rgb(239, 239, 239);
+  background-color: gray;
   color: black;
   padding: 10px 20px;
   border: 1px solid #353836;
   /* Товщина, колір та стиль рамки */
   cursor: pointer;
-  border-radius: 30px;
+  border-radius: 10px;
 }
 
 .calendar-saveBtn:hover {
-  background-color: #7ae17f;
+  background-color: lightgray;
 }
 
 input[type=text],
@@ -562,8 +563,6 @@ input[type=datetime-local] {
   margin: 20px auto;
   padding: 30px;
   width: 100%;
-  border: 1px solid #ccc;
-  background-color: rgb(241, 238, 238);
   margin-bottom: 10px;
 }
 
@@ -589,7 +588,7 @@ input[type=datetime-local] {
 }
 
 .delete-event {
-  background-color: #5f5c5c;
+  background-color: #cc0000;
   color: #fff;
   border: none;
   padding: 5px 10px;
@@ -600,7 +599,7 @@ input[type=datetime-local] {
 }
 
 .delete-event:hover {
-  background-color: #cc0000;
+  background-color: #808080;
 }
 
 @media only screen and (max-width: 600px) {
@@ -646,36 +645,44 @@ nav > div:nth-child(2) > button:hover {
   background: none;
 }
 
+#signOutBtn {
+  width: 70px;
+  height: 25px;
+  border: 1px solid gray;
+  border-radius: 6px;
+}
+
 #signOutBtn:hover {
   cursor: pointer;
 }
 
 /* ----- style for main ----- */
 .main-container {
-  background: url(https://images.unsplash.com/photo-1622547748225-3fc4abd2cca0?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHNpbXBsZXxlbnwwfHwwfHx8MA%3D%3D);
+  min-height: 100vh;
+  background: url(https://images.unsplash.com/photo-1482053450283-3e0b78b09a70?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
   background-position: left center;
   background-size: cover;
   background-repeat: no-repeat;
 }
 
 .main-container-inloggde {
-  background: url(https://images.unsplash.com/photo-1516541196182-6bdb0516ed27?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Njd8fHNpbXBsZXxlbnwwfHwwfHx8MA%3D%3D);
-  background-color: rgb(255, 255, 255);
+  background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(171, 171, 171, 0.146)), url(https://images.unsplash.com/photo-1516541196182-6bdb0516ed27?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Njd8fHNpbXBsZXxlbnwwfHwwfHx8MA==);
+  background-color: rgb(0, 0, 0);
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
-  min-height: 90vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
 }
 
 .main-inloggning {
-  background: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.8);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 150px 0% 150px 55%;
+  margin: 12% 55%;
   border-radius: 20px;
   padding: 3%;
   width: 370px;
@@ -714,7 +721,7 @@ div.main-inloggning > div > button {
 }
 
 #signinBtn, #registerBtn {
-  background: red;
+  background: #e30303;
   color: white;
   width: 70%;
   height: 40px;
@@ -738,11 +745,11 @@ div.main-inloggning > div > button {
   max-width: 70%;
   height: 10%;
   box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
-  margin: 180px 0;
+  margin: 15% 0;
 }
 
 h2.apiGreating {
-  margin: 0;
+  margin: 10px 0;
 }
 
 .apiQuote {
@@ -751,11 +758,11 @@ h2.apiGreating {
   margin-bottom: 50px;
 }
 
-#myTodosBtn, #myHabitsBtn, #myCalendarsBtn {
+#myTodosBtn, #myHabitsBtn {
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
-  background-color: #4CAF50;
+  background-color: #e30303;
   color: white;
   text-align: center;
   text-decoration: none;
@@ -765,6 +772,6 @@ h2.apiGreating {
   margin: 10px 0;
 }
 
-#myTodosBtn, #myHabitsBtn:hover {
-  background-color: #45a049;
+#myTodosBtn:hover, #myHabitsBtn:hover {
+  background-color: rgb(253, 87, 87);
 }/*# sourceMappingURL=styles.css.map */
