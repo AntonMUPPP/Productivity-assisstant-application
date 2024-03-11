@@ -1,237 +1,193 @@
 // JavaScript code for managing calendar events
-
-// When the DOM content is fully loaded, execute the following function
-document.addEventListener("DOMContentLoaded", function () {
-  // Get references to DOM elements
+function calendarWindow() {
   const calendarModal = document.getElementById("calendarModal");
-  const calendarForm = document.getElementById("calendarForm");
-  const upcomingEventList = document.getElementById("upcomingEventList");
-  const pastEventList = document.getElementById("pastEventList");
+  const overlayCalendar = document.querySelector(".overlayCalendar");
 
-  // Function to save events to local storage
-  function saveEventsToLocalStorage(events) {
-    localStorage.setItem("events", JSON.stringify(events));
-  }
+  // Check if the calendar modal window is open or closed
+  const isOpen = calendarModal.style.display === "block";
 
-  // Function to retrieve events from local storage
-  function getEventsFromLocalStorage() {
-    const events = localStorage.getItem("events");
-    return events ? JSON.parse(events) : [];
-  }
-
-  // Function to show the calendar modal
-  function showCalendar() {
-    calendarModal.style.display = "block";
-  }
-
-  // Event listener for showing the calendar modal when the calendar button is clicked
-  const calendarBtn = document.querySelector("#calendar-btn");
-  calendarBtn.addEventListener("click", showCalendar);
-
-  // Event listener for hiding the calendar modal when the close button is clicked
-  const calendarCloseBtn = document.querySelector("#calendarClose");
-  calendarCloseBtn.addEventListener("click", function () {
+  // Open or close the calendar window and display or hide overlay accordingly
+  if (isOpen) {
     calendarModal.style.display = "none";
+    overlayCalendar.style.display = "none";
+  } else {
+    calendarModal.style.display = "block";
+    overlayCalendar.style.display = "block";
+    displayEvents(); // Display events when the calendar window is opened
+  }
+}
+
+// Function to add a new event to the calendar
+function addEvent() {
+  const eventName = document.getElementById("eventName").value;
+  const eventStartTime = new Date(
+    document.getElementById("eventStartTime").value
+  );
+  const eventEndTime = new Date(document.getElementById("eventEndTime").value);
+
+  // Check if the end time is earlier than the start time
+  if (eventEndTime <= eventStartTime) {
+    alert("End time should be later than start time");
+    return;
+  }
+
+  // Retrieve existing events from local storage
+  const existingEvents = JSON.parse(localStorage.getItem("events")) || [];
+
+  // Check for event conflicts
+  const hasConflict = existingEvents.some((existingEvent) => {
+    const existingEventStartTime = new Date(existingEvent.startTime);
+    const existingEventEndTime = new Date(existingEvent.endTime);
+
+    // Check for three possible conflict scenarios:
+    return (
+      // 1. New event starts during an existing event
+      (eventStartTime >= existingEventStartTime &&
+        eventStartTime < existingEventEndTime) ||
+      // 2. New event ends during an existing event
+      (eventEndTime > existingEventStartTime &&
+        eventEndTime <= existingEventEndTime) ||
+      // 3. New event completely overlaps an existing event
+      (eventStartTime <= existingEventStartTime &&
+        eventEndTime >= existingEventEndTime)
+    );
   });
 
-  // Function to add a new event
-  function addEvent(event) {
-    // Prevent default form submission behavior
-    event.preventDefault();
-    // Get the event name, start time, and end time from the form inputs
-    const eventName = document.getElementById("eventName").value;
-    const eventStartTime = new Date(
-      document.getElementById("eventStartTime").value
-    );
-    const eventEndTime = new Date(
-      document.getElementById("eventEndTime").value
-    );
+  // If there's a conflict, show an alert and return without adding the event
+  if (hasConflict) {
+    alert("You already have an event at this time");
+    return;
+  }
 
-    // Retrieve events from local storage
-    const myEvents = getEventsFromLocalStorage();
+  // If there's no conflict, add the new event to the events list
+  const newEvent = {
+    name: eventName,
+    startTime: eventStartTime.toISOString(),
+    endTime: eventEndTime.toISOString(),
+  };
+  existingEvents.push(newEvent);
 
-    // Check for event conflicts
-    const hasConflict = myEvents.some((existingEvent) => {
-      // Convert existing event start and end times to Date objects
-      const existingEventStartTime = new Date(existingEvent.startTime);
-      const existingEventEndTime = new Date(existingEvent.endTime);
-      // Check for three possible conflict scenarios:
-      return (
-        // 1. New event starts during an existing event
-        (eventStartTime >= existingEventStartTime &&
-          eventStartTime < existingEventEndTime) ||
-        // 2. New event ends during an existing event
-        (eventEndTime > existingEventStartTime &&
-          eventEndTime <= existingEventEndTime) ||
-        // 3. New event completely overlaps an existing event
-        (eventStartTime <= existingEventStartTime &&
-          eventEndTime >= existingEventEndTime)
-      );
+  // Save the updated events list to local storage
+  localStorage.setItem("events", JSON.stringify(existingEvents));
+
+  // Update the display of events
+  displayEvents();
+}
+
+// Function to delete an event
+function deleteEvent(index) {
+  const events = JSON.parse(localStorage.getItem("events")) || [];
+
+  // Check if the index is valid
+  if (index < 0 || index >= events.length) {
+    console.error("Invalid event index:", index);
+    return;
+  }
+
+  // Remove the event at the specified index from the events array
+  events.splice(index, 1);
+  // Save the updated events to local storage
+  localStorage.setItem("events", JSON.stringify(events));
+  // Update the display of events
+  displayEvents();
+}
+
+// Function to update delete buttons
+function updateDeleteButtons() {
+  const deleteButtons = document.querySelectorAll(".delete-event");
+  deleteButtons.forEach((button, index) => {
+    button.setAttribute("data-index", index);
+  });
+}
+
+// Function to format date
+function formatDate(date) {
+  const day = String(date.getDate()).padStart(2, "0");
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const year = date.getFullYear();
+  const hours = String(date.getHours()).padStart(2, "0");
+  const minutes = String(date.getMinutes()).padStart(2, "0");
+
+  return `${day}/${month}/${year} ${hours}:${minutes}`;
+}
+
+// Function to display events
+function displayEvents() {
+  const eventList = document.getElementById("eventListCalendar");
+  eventList.innerHTML = ""; // Clear previously displayed events
+
+  const events = JSON.parse(localStorage.getItem("events")) || [];
+  const currentTime = new Date(); // Current time
+
+  // Split events into current and past events
+  const currentEvents = [];
+  const pastEvents = [];
+  events.forEach((event) => {
+    if (new Date(event.endTime) < currentTime) {
+      pastEvents.push(event);
+    } else {
+      currentEvents.push(event);
+    }
+  });
+
+  // Sort currentEvents by start time
+  currentEvents.sort((a, b) => new Date(a.startTime) - new Date(b.startTime));
+
+  // Sort pastEvents by end time
+  pastEvents.sort((a, b) => new Date(b.endTime) - new Date(a.endTime));
+
+  // Display current events
+  currentEvents.forEach((event, index) => {
+    const listItem = createEventListItem(event, index);
+    if (new Date(event.startTime) > currentTime) {
+      listItem.classList.add("future-event"); // Add class for future events
+    } else {
+      listItem.classList.add("past-event"); // Add class for past events
+    }
+    eventList.appendChild(listItem);
+  });
+
+  // Display past events
+  pastEvents.forEach((event, index) => {
+    const listItem = createEventListItem(event, index + currentEvents.length); // Update index
+    listItem.classList.add("past-event");
+    eventList.appendChild(listItem);
+  });
+
+  // Event listener for delete buttons
+  const deleteButtons = document.querySelectorAll(".delete-event");
+  deleteButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      const indexToDelete = parseInt(button.getAttribute("data-index"));
+      console.log("Button clicked at index:", indexToDelete);
+      deleteEvent(indexToDelete);
     });
+  });
+}
 
-    // If there's a conflict, show an alert and return
-    if (hasConflict) {
-      alert("You have already an event at this time");
-      return;
-    }
+// Add an event listener for the event form submission
+document
+  .getElementById("calendarForm")
+  .addEventListener("submit", function (event) {
+    event.preventDefault(); // Prevent the default form submission action
 
-    // Otherwise, add the new event, save it to local storage, and display the updated list of events
-    const updatedEvents = [
-      ...myEvents,
-      {
-        name: eventName,
-        startTime: eventStartTime.toISOString(),
-        endTime: eventEndTime.toISOString(),
-      },
-    ];
-
-    saveEventsToLocalStorage(updatedEvents);
-    displayEvents(updatedEvents);
-    event.target.reset();
-  }
-
-  // Event listener for adding an event when the calendar form is submitted
-  calendarForm.addEventListener("submit", addEvent);
-
-  // Function to delete an event
-  function deleteEvent(index) {
-    const myEvents = getEventsFromLocalStorage();
-    // Remove the event at the specified index from the events array
-    myEvents.splice(index, 1);
-    // Save the updated events to local storage
-    saveEventsToLocalStorage(myEvents);
-    // Display the updated list of events
-    displayEvents(getEventsFromLocalStorage());
-  }
-
-  // Event listener for deleting an event from the upcoming event list
-  upcomingEventList.addEventListener("click", function (event) {
-    // Check if the clicked element has the class "delete-event"
-    if (event.target.classList.contains("delete-event")) {
-      // Get the index of the event to be deleted from the data-index attribute
-      const index = parseInt(event.target.getAttribute("data-index"));
-      // Call the deleteEvent function with the index of the event to be deleted
-      deleteEvent(index);
-    }
+    // Call the function to add an event
+    addEvent();
   });
 
-  // Event listener for deleting an event from the past event list
-  pastEventList.addEventListener("click", function (event) {
-    if (event.target.classList.contains("delete-event")) {
-      // Get the index of the event to be deleted from the data-index attribute
-      const index = parseInt(event.target.getAttribute("data-index"));
-      deleteEvent(index);
-    }
-  });
+// Function to create event list item
+function createEventListItem(event, index) {
+  const listItem = document.createElement("li");
+  const deleteButton = document.createElement("button");
+  deleteButton.textContent = "Delete";
+  deleteButton.classList.add("delete-event");
+  deleteButton.setAttribute("data-index", index); // Додайте індекс до кнопки видалення
+  listItem.textContent = `${event.name} - ${formatDate(
+    new Date(event.startTime)
+  )} to ${formatDate(new Date(event.endTime))}`;
+  listItem.appendChild(deleteButton);
+  return listItem;
+}
 
-  // Display the events from local storage when the page loads
-  displayEvents(getEventsFromLocalStorage());
-
-  // Function to display the list of events
-  function displayEvents(events) {
-    // Clear the contents of the upcoming event list and past event list
-    upcomingEventList.innerHTML = "";
-    pastEventList.innerHTML = "";
-    // Get the current time
-    const currentTime = new Date();
-    // Filter events into upcoming events (events with end time after current time)
-    const upcomingEvents = events.filter(
-      (event) => new Date(event.endTime) > currentTime
-    );
-    // Filter events into past events (events with end time on or before current time)
-    const pastEvents = events.filter(
-      (event) => new Date(event.endTime) <= currentTime
-    );
-
-    // Function to format date and time
-    function formatDateTime(dateTime) {
-      return dateTime.toLocaleString("en-US", {
-        day: "2-digit",
-        month: "2-digit",
-        year: "numeric",
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: false,
-      });
-    }
-
-    // Function to create an event item
-    function createEventItem(event, index) {
-      // Create a list item element for the event
-      const eventItem = document.createElement("li");
-
-      // Convert event start and end times to Date objects
-      const startTime = new Date(event.startTime);
-      const endTime = new Date(event.endTime);
-
-      // Format start and end times
-      const formattedStartTime = formatDateTime(startTime);
-      const formattedEndTime = formatDateTime(endTime);
-
-      // Create elements for event name, start time, and end time
-      const eventName = document.createElement("span");
-      eventName.textContent = event.name;
-      eventName.classList.add("event-name");
-
-      const startLabel = document.createElement("span");
-      startLabel.textContent = "Start Time: ";
-      startLabel.classList.add("event-time");
-
-      const endLabel = document.createElement("span");
-      endLabel.textContent = "End Time: ";
-      endLabel.classList.add("event-time");
-
-      // Create text nodes for formatted start and end times
-      const startTimeText = document.createTextNode(formattedStartTime);
-      const endTimeText = document.createTextNode(formattedEndTime);
-
-      // Append event name to the event item and add a line break
-      eventItem.appendChild(eventName); // Append event name
-      eventItem.appendChild(document.createElement("br")); // Line break
-
-      // Append start time label, start time text, and a line break
-      eventItem.appendChild(startLabel);
-      eventItem.appendChild(startTimeText);
-      eventItem.appendChild(document.createElement("br")); // Line break
-
-      // Append end time label, end time text, and a line break
-      eventItem.appendChild(endLabel);
-      eventItem.appendChild(endTimeText);
-
-      // Create a delete button, set its text content and attributes
-      const deleteButton = document.createElement("button");
-      deleteButton.textContent = "Delete";
-      deleteButton.classList.add("delete-event");
-      deleteButton.setAttribute("data-index", index); // Set data-index attribute
-
-      // Append delete button to the event item
-      eventItem.appendChild(deleteButton);
-
-      // Return the completed event item
-      return eventItem;
-    }
-
-    // Function to display a list of events in a specified list container
-    function displayEventList(list, title, events) {
-      // Check if there are events to display
-      if (events.length > 0) {
-        // Create a title element for the list
-        const eventsTitle = document.createElement("h2");
-        eventsTitle.textContent = title; // Set the title text content
-        list.appendChild(eventsTitle); // Append the title to the list container
-
-        // Iterate through each event in the events array
-        events.forEach((event) => {
-          // Create an event item using the createEventItem function
-          const eventItem = createEventItem(event);
-          // Append the event item to the list container
-          list.appendChild(eventItem);
-        });
-      }
-    }
-
-    // Display upcoming and past events
-    displayEventList(upcomingEventList, "Upcoming Events", upcomingEvents);
-    displayEventList(pastEventList, "Past Events", pastEvents);
-  }
-});
+// Initial display of events when the page loads
+displayEvents();

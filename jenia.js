@@ -52,18 +52,16 @@ let goBack = () => {
   window.history.back();
 };
 
-  /* ----- Function to log sign out ----- */
-  signOutBtn.addEventListener('click',() => {
-    localStorage.removeItem('loggedInUser');
-     window.location.href = 'index.html';
-   })
- 
+/* ----- Function to log sign out ----- */
+signOutBtn.addEventListener("click", () => {
+  localStorage.removeItem("loggedInUser");
+  window.location.href = "index.html";
+});
 
-  let currentUser = localStorage.getItem('loggedInUser');
-  //show username on header
-const profileName = document.querySelector('#profileName');
+let currentUser = localStorage.getItem("loggedInUser");
+//show username on header
+const profileName = document.querySelector("#profileName");
 profileName.innerText = currentUser;
-
 
 // Execute the following code when the DOM content is loaded
 document.addEventListener("DOMContentLoaded", function () {
