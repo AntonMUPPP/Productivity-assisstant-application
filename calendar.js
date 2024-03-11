@@ -1,4 +1,6 @@
 // JavaScript code for managing calendar events
+
+// Function to toggle the visibility of the calendar modal window
 function calendarWindow() {
   const calendarModal = document.getElementById("calendarModal");
   const overlayCalendar = document.querySelector(".overlayCalendar");
@@ -25,9 +27,9 @@ function addEvent() {
   );
   const eventEndTime = new Date(document.getElementById("eventEndTime").value);
 
-  // Check if the end time is earlier than the start time
-  if (eventEndTime <= eventStartTime) {
-    alert("End time should be later than start time");
+  // Check if the end time is not earlier than the start time
+  if (eventEndTime < eventStartTime) {
+    alert("End time cannot be earlier than start time");
     return;
   }
 
@@ -59,8 +61,9 @@ function addEvent() {
     return;
   }
 
-  // If there's no conflict, add the new event to the events list
+  // Add the new event to the events list
   const newEvent = {
+    id: Date.now(), // Generate unique ID for the event
     name: eventName,
     startTime: eventStartTime.toISOString(),
     endTime: eventEndTime.toISOString(),
@@ -70,11 +73,11 @@ function addEvent() {
   // Save the updated events list to local storage
   localStorage.setItem("events", JSON.stringify(existingEvents));
 
-  // Update the display of events
+  // Display the updated list of events
   displayEvents();
 }
 
-// Function to delete an event
+// Function to delete an event from the calendar
 function deleteEvent(index) {
   const events = JSON.parse(localStorage.getItem("events")) || [];
 
@@ -84,23 +87,17 @@ function deleteEvent(index) {
     return;
   }
 
-  // Remove the event at the specified index from the events array
+  // Remove the event at the specified index
   events.splice(index, 1);
-  // Save the updated events to local storage
+
+  // Save the updated events list to local storage
   localStorage.setItem("events", JSON.stringify(events));
-  // Update the display of events
+
+  // Display the updated list of events
   displayEvents();
 }
 
-// Function to update delete buttons
-function updateDeleteButtons() {
-  const deleteButtons = document.querySelectorAll(".delete-event");
-  deleteButtons.forEach((button, index) => {
-    button.setAttribute("data-index", index);
-  });
-}
-
-// Function to format date
+// Function to format date in a human-readable format
 function formatDate(date) {
   const day = String(date.getDate()).padStart(2, "0");
   const month = String(date.getMonth() + 1).padStart(2, "0");
@@ -111,7 +108,7 @@ function formatDate(date) {
   return `${day}/${month}/${year} ${hours}:${minutes}`;
 }
 
-// Function to display events
+// Function to display the list of events on the calendar
 function displayEvents() {
   const eventList = document.getElementById("eventListCalendar");
   eventList.innerHTML = ""; // Clear previously displayed events
@@ -119,10 +116,10 @@ function displayEvents() {
   const events = JSON.parse(localStorage.getItem("events")) || [];
   const currentTime = new Date(); // Current time
 
-  // Split events into current and past events
   const currentEvents = [];
   const pastEvents = [];
   events.forEach((event) => {
+    // Separate current and past events
     if (new Date(event.endTime) < currentTime) {
       pastEvents.push(event);
     } else {
@@ -139,55 +136,60 @@ function displayEvents() {
   // Display current events
   currentEvents.forEach((event, index) => {
     const listItem = createEventListItem(event, index);
+    // Add class for future or past events
     if (new Date(event.startTime) > currentTime) {
-      listItem.classList.add("future-event"); // Add class for future events
+      listItem.classList.add("future-event");
     } else {
-      listItem.classList.add("past-event"); // Add class for past events
+      listItem.classList.add("past-event");
     }
     eventList.appendChild(listItem);
   });
 
   // Display past events
   pastEvents.forEach((event, index) => {
-    const listItem = createEventListItem(event, index + currentEvents.length); // Update index
+    const listItem = createEventListItem(event, index + currentEvents.length);
     listItem.classList.add("past-event");
     eventList.appendChild(listItem);
   });
 
-  // Event listener for delete buttons
-  const deleteButtons = document.querySelectorAll(".delete-event");
-  deleteButtons.forEach((button) => {
-    button.addEventListener("click", function () {
-      const indexToDelete = parseInt(button.getAttribute("data-index"));
-      console.log("Button clicked at index:", indexToDelete);
-      deleteEvent(indexToDelete);
-    });
-  });
+  // Update delete buttons
+  updateDeleteButtons();
 }
 
-// Add an event listener for the event form submission
-document
-  .getElementById("calendarForm")
-  .addEventListener("submit", function (event) {
-    event.preventDefault(); // Prevent the default form submission action
-
-    // Call the function to add an event
-    addEvent();
-  });
-
-// Function to create event list item
+// Function to create an event list item
 function createEventListItem(event, index) {
   const listItem = document.createElement("li");
   const deleteButton = document.createElement("button");
   deleteButton.textContent = "Delete";
   deleteButton.classList.add("delete-event");
-  deleteButton.setAttribute("data-index", index); // Додайте індекс до кнопки видалення
+  deleteButton.setAttribute("data-index", index); // Add index to delete button
+  // Display event name and time range
   listItem.textContent = `${event.name} - ${formatDate(
     new Date(event.startTime)
   )} to ${formatDate(new Date(event.endTime))}`;
+  // Append delete button to the list item
   listItem.appendChild(deleteButton);
   return listItem;
 }
 
+// Function to update delete buttons
+function updateDeleteButtons() {
+  const deleteButtons = document.querySelectorAll(".delete-event");
+  deleteButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      const index = parseInt(button.getAttribute("data-index"));
+      deleteEvent(index);
+    });
+  });
+}
+
 // Initial display of events when the page loads
 displayEvents();
+
+// Event listener for submitting the calendar form
+document
+  .getElementById("calendarForm")
+  .addEventListener("submit", function (event) {
+    event.preventDefault();
+    addEvent();
+  });
