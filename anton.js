@@ -82,6 +82,7 @@ window.onload = clearCheckboxes()       //Resets the checkboxes on reload of the
 
 function toggleHabitWindow() {
     const window = document.querySelector(".add-habit-window")
+    const overlay = document.querySelector(".overlay")
     const addButton = document.querySelector("#addHabitButton")
     const addHabitHeading = document.querySelector(".add-habit-window h2")
     const habitTitleInput = document.querySelector("#habittitle")
@@ -92,8 +93,10 @@ function toggleHabitWindow() {
         delete habitTitleInput.dataset.editingId        //Clear editingId attribute
         addButton.textContent = "Add Habit"     //Reset button text
         addHabitHeading.textContent = "Add Habit"       //Reset heading text
+        overlay.style.display = "none"
     } else {
         window.style.display = "flex"
+        overlay.style.display = "block"
     }
 }
 
@@ -106,17 +109,17 @@ function renderFilteredHabits(filteredHabitsArr){
         habitElement.classList.add("habit")     //Gives it the proper class
 
         habitElement.innerHTML = `
-            <button class="delete-btn" onclick="deleteHabit('${habit.id}')">Delete</button>
+            <button class="delete-btn" onclick="deleteHabit('${habit.id}')"><i class="fa-solid fa-xmark"></i></button>
             <h2>${habit.title}</h2>
             <div class="streak-container">
-                <p>Streak:</p>
-                <button onclick="decreaseStreak('${habit.id}')">-</button>
+                <p id="streakTitle">Streak:</p>
+                <button class="decrease-streak-btn" onclick="decreaseStreak('${habit.id}')">-</button>
                 <p class="streak">${habit.streak || 0}</p>
-                <button onclick="increaseStreak('${habit.id}')">+</button>
-                <button onclick="resetStreak('${habit.id}')">Reset streak</button>
+                <button class="increase-streak-btn" onclick="increaseStreak('${habit.id}')">+</button>
+                <button class="reset-streak-btn" onclick="resetStreak('${habit.id}')">Reset streak</button>
             </div>
             <p>Priority: ${habit.prio}</p>
-            <button class="edit-btn" onclick="editHabit('${habit.id}', '${habit.title}', '${habit.prio}')">Edit</button>`
+            <button class="edit-btn" onclick="editHabit('${habit.id}', '${habit.title}', '${habit.prio}')"><i class="fa-solid fa-pen-to-square"></i></button>`
 
         habitElement.setAttribute("id", habit.id)       //Gives the element the id of the habit so its easier to find which div is which
         habitContainer.appendChild(habitElement)
@@ -128,6 +131,7 @@ function addHabit() {
     const habitTitle = habitTitleInput.value.trim()
     const habitPrio = document.querySelector("#priorityselect").value
     const window = document.querySelector(".add-habit-window")
+    const overlay = document.querySelector(".overlay")
     const habitId = habitTitleInput.dataset.editingId || "habit_" + Date.now()
 
     //Small check to see that the user actually typed a title
@@ -157,6 +161,7 @@ function addHabit() {
     //Resets the input field and hides the add habit menu
     habitTitleInput.value = ""
     window.style.display = "none"
+    overlay.style.display = "none"
 
     //Clears the editing flag so you can freely edit another habit
     delete habitTitleInput.dataset.editingId
