@@ -29,39 +29,47 @@ nav > div:nth-child(2) > button:hover{
     margin:0 10px 0 5px;
     background: none;
 }
+#signOutBtn {
+    width: 70px;
+    height: 25px;
+    border: 1px solid gray;
+    border-radius: 6px;
+}
 #signOutBtn:hover {
     cursor: pointer;
+    
 }
 
 
 
 /* ----- style for main ----- */
 .main-container {
-    background: url(https://images.unsplash.com/photo-1622547748225-3fc4abd2cca0?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHNpbXBsZXxlbnwwfHwwfHx8MA%3D%3D);
-    background-position: left center;
+    min-height: 100vh;
+    background: url(https://images.unsplash.com/photo-1482053450283-3e0b78b09a70?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+    background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
 }
 .main-container-inloggde {
-    background: url(https://images.unsplash.com/photo-1516541196182-6bdb0516ed27?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Njd8fHNpbXBsZXxlbnwwfHwwfHx8MA%3D%3D);
-    background-color: rgb(255, 255, 255);
+    background: url(https://images.unsplash.com/photo-1482053450283-3e0b78b09a70?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+    background-color: rgba(0, 0, 0, 1);
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
-    min-height: 90vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
 }
 .main-inloggning {
-    background: rgba(255, 255, 255,0.75);
+    background: rgba(255, 255, 255, 0.95);
     // border: 0.5px solid gray;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 150px 0% 150px 55%;
+    margin: 12% 55%;
     border-radius: 20px;    
-    padding: 3%;
+    padding: 30px;
     width: 370px;
     height: 450px;
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
@@ -93,7 +101,7 @@ div.main-inloggning > div > button{
     }
 
 #signinBtn,#registerBtn{
-    background: red;
+    background: $color-background-redBtn;
     color: white;
     width: 70%;
     height: 40px;
@@ -109,17 +117,17 @@ div.main-inloggning > div > button{
 }
 
 .main-inloggde {
-    background: rgba(255, 255, 255,0.75);
+    background: rgba(255, 255, 255, 1);
     border-radius: 20px;
     padding: 5%;
     min-width: 40%;
     max-width: 70%;
     height: 10%;
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
-    margin: 180px 0;
+    margin: 15% 0;
 }
 h2.apiGreating {
-    margin: 0;
+    margin: 10px 0;
 }
 .apiQuote {
     font-size: large;
@@ -127,11 +135,11 @@ h2.apiGreating {
     margin-bottom: 50px;
 }
 
-#myTodosBtn, #myHabitsBtn,#myCalendarsBtn {
+#myTodosBtn, #myHabitsBtn {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
-    background-color: #4CAF50; 
+    background-color: $color-background-redBtn; 
     color: white; 
     text-align: center;
     text-decoration: none;
@@ -141,6 +149,6 @@ h2.apiGreating {
     margin: 10px 0;
 }
 
-#myTodosBtn, #myHabitsBtn:hover {
-    background-color: #45a049;
+#myTodosBtn:hover, #myHabitsBtn:hover {
+    background-color: $color-hover-redBtn;
 }

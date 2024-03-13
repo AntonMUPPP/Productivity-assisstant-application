@@ -25,7 +25,7 @@
           <span id="weather-text">Loading...</span>
         </div>
         <div>
-          <button onclick="calendarWindow()">Calendar</button>
+          <button id="calendarBtn" onclick="calendarWindow()">Calendar</button>
           <button onclick="toggleTimerWindow()">Pomodoro Timer</button>
         </div>
         <div class="user_info">
@@ -38,13 +38,12 @@
     </header>
 
     <main id="todo-main">
-      <button onclick="goBack()">Back</button>
       <div id="todo-page-container">
+        <button onclick="goBack()">< Back</button>
         <div class="my-todos">
           <button class="add-todo-btn">Add ToDo</button>
           <div class="filters">
-            <h1>My ToDos</h1>
-            <p>Filter by:</p>
+            <p>Sort by:</p>
 
             <div>
               <p>Category:</p>
@@ -80,7 +79,9 @@
               />
             </div>
             <div>
-              <label for="completed">show my completed ToDos </label>
+              <label for="completed"
+                >Status: Including my completed ToDos
+              </label>
               <input type="checkbox" class="completed" id="completed" />
             </div>
 
@@ -97,11 +98,11 @@
 
             <div class="add-todo-window">
               <button class="close">X</button>
-              <h3>Add ToDo</h3>
+              <h2>Add ToDo</h2>
               <form action="" id="add-todo-form">
                 <div class="todo-inputs">
                   <div>
-                    <label for="todotitle">ToDo</label>
+                    <label for="todotitle">Tiltle</label>
                     <input
                       type="text"
                       name="todotitle"
@@ -134,9 +135,9 @@
                   </div>
                   <div class="timeestimate">
                     <label>Time estimate:</label>
-                    <label for="day">days</label>
+                    <label for="day">Days</label>
                     <input type="number" name="day" id="day" min="0" />
-                    <label for="hour">hours</label>
+                    <label for="hour">Hours</label>
                     <input type="number" name="hour" id="hour" min="0" />
                   </div>
                 </div>

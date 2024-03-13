@@ -1,8 +1,8 @@
 .timer{
     border-radius: 16px;
     width: 400px;
-    height: 500px;
-    background-color: #035E7B;
+    height: 300px;
+    background-color: $primary-bg-color;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -12,15 +12,16 @@
     justify-content: space-between;
     align-items: center;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
     button{
         font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-weight: bold;
     }
 }
 
 .timer-option-container{
     width: 100%;
     height: 60px;
-    background-color: #003e52;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -28,11 +29,11 @@
     border-radius: 16px 16px 0px 0px;
     button{
         color: white;
-        background-color: $color-background-button;
+        background-color: #6D6D6D;
         border: none;
         border-radius: 4px;
         &:hover{
-            background-color: $color-hover-button;
+            background-color: black;
         }
     }
 }
@@ -50,12 +51,12 @@
     width: 180px;
     height: 60px;
     margin-bottom: 16px;
-    background-color: $color-background-button;
+    background-color: #6D6D6D;
     border: none;
     border-radius: 16px;
     color: white;
     &:hover{
-        background-color: $color-hover-button;
+        background-color: black;
     }
 }
 
@@ -65,67 +66,109 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.75);
     display: none;
 }
 
 .habit-page-container{
-    display: flex;
+    background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url(https://images.unsplash.com/photo-1482053450283-3e0b78b09a70?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex; 
     flex-direction: column;
     align-items: center;
     position: relative;
+    padding-top: 36px;
 }
 
 .habit-option-container{
     display: flex;
     flex-direction: column;
-    width: 80vw;
+    width: fit-content;
     gap: 16px;
-    padding: 12px;
-   
+    width: 1000px;
     a{
         text-decoration: none;
         color: black;
     }
-    button{
-        padding: 8px;
+    #add-habit-btn{
+        padding: 12px 24px;
         border-radius: 8px;
-        width: 100px;
         border: none;
-        background-color: $color-background-button;
+        color: white;
+        background-color: $color-background-redBtn;
+        align-self: center;
+        box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+        margin: 40px 0;
         &:hover{
-            background-color: $color-hover-button;
+            background-color: $color-hover-redBtn;
         }
     }
     select{
         width: fit-content;
+        border: 0.5px sloid black;
+        padding: 3px 16px;
+        border-radius: 5px;
+        align-self: flex-end;
+    }
+    #back-btn{
+        font-size: 14px;
+        text-align: left;
+        align-self: auto;
+        background-color: transparent;
+        color: black;
+        border: none;
+        &:hover{
+            cursor: pointer;
+        }
+    }
+    #filter-btn{
+        width: fit-content;
+        padding: 10px 20px;
+        background-color: black;
+        align-self: auto;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        &:hover{
+            background-color: #282828;
+        }
     }
 }
 
+.filter-text{
+    font-weight: 600;
+}
+
 .habit-container{
-    width: 80vw;
+    width: 40vw;
     height: fit-content;
-    min-height: 60vh;
-    background-color: $primary-bg-color;
+    width: fit-content;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 12px;
     position: relative;
-    padding: 24px;
+    padding: 12px;
     margin-bottom: 24px;
+    border-radius: 16px;
 }
 
 .habit{
     background-color: white;
-    width: 600px;
+    width: 1000px;
     height: fit-content;
-    padding: 12px;
-    border-radius: 4px;
+    padding: 48px;
+    border-radius: 12px;
     position: relative;
     display: flex;
     flex-direction: column;
     gap: 24px;
+    margin-bottom: 20px;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
     h2::first-letter{
         text-transform: capitalize;
     }
@@ -134,32 +177,96 @@
         top: 0;
         right: 0;
         margin: 10px;
+        padding: 4px;
+        background-color: $color-background-redBtn;
+        border: none;
+        border-radius: 4px;
+        color: white;
+        &:hover{
+            background-color: $color-hover-redBtn;
+        }
     }
     .edit-btn{
         position: absolute;
         bottom: 0;
         right: 0;
         margin: 10px;
+        padding: 6px;
+        color: white;
+        background-color: black;
+        border: none;
+        border-radius: 4px;
+        &:hover{
+            background-color: #282828;
+        }
     }
+    #streakTitle{
+        margin-right: 12px;
+    }
+    .decrease-streak-btn, .increase-streak-btn{
+        color: white;
+        padding: 4px 7px;
+        font-weight: bold;
+        background-color: black;
+        border: none;
+        //border-radius: 4px;
+        &:hover{
+            background-color: #282828;
+        }
+    }
+    .reset-streak-btn{
+        padding: 4px 8px;
+        background-color: black;
+        color: white;
+        border: none;
+        margin-left: 24px;
+        &:hover{
+            background-color: #282828;
+        }
+    }
+}
+
+.streak{
+    background-color: white;
+    width: 24px;
+    text-align: center;
 }
 
 .streak-container{
     display: flex;
-    gap: 4px;
+    //gap: 4px;
+    font-size: 18px;
 }
 
 .add-habit-window{
-    width: 250px;
-    height: fit-content;
+    width: 400px;
+    height: 300px;
     padding: 12px;
-    background-color: olive;
+    background-color: $primary-bg-color;
     display: none;
     flex-direction: column;
-    gap: 16px;
+    justify-content: space-evenly;
     position: absolute;
     z-index: 100;
     margin-top: 200px;
-    box-shadow: 0px 0px 300px 120px gray
+    padding: 49px;
+    h2{
+        margin-bottom: 24px;
+    }
+    #addHabitButton{
+        color: white;
+        background-color: black;
+        width: 120px;
+        border: none;
+        border-radius: 12px;
+        padding: 12px;
+        font-size: 18px;
+        align-self: center;
+        margin-top: 24px;
+        &:hover{
+            background-color: #444444;
+        }
+    }
 }
 
 .closeBtn{
@@ -169,11 +276,12 @@
     top: 0px;
     width: 20px;
     height: 20px;
-    background-color: $color-background-button;
+    background-color: #CC0000;
     border: none;
     border-radius: 4px;
+    color: white;
     &:hover{
-        background-color: $color-hover-button;
+        background-color: #a10000;
     }
 }
 
@@ -181,4 +289,14 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
+    input{
+        padding: 8px;
+    }
+    select{
+        padding: 8px;
+        border: 1px solid darkgray;
+        background-color: white;
+        padding: 8px;
+        border-radius: 8px;
+    }
 }

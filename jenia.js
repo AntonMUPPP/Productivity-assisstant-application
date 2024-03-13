@@ -79,10 +79,13 @@ document.addEventListener("DOMContentLoaded", function () {
   // Function to hide  add todo window
   function hideAddTodoWindow() {
     addTodoWindow.style.display = "none";
+    overlay.style.display = 'none'
   }
 
+  const overlay = document.querySelector('.overlay');
   // Function to show the add todo window
   function showAddTodoWindow() {
+    overlay.style.display ='block'
     addTodoWindow.style.display = "block";
   }
 

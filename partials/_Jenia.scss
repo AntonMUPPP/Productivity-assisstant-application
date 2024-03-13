@@ -1,9 +1,14 @@
 .my-todos {
-  width: 80%;
-  max-width: 600px;
-  margin: 10px auto;
-  padding: 20px;
-  background-color: #e6d2c4;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#todo-page-container > button {
+  background: none;
+  font-size: 14px;
+  border: none;
 }
 
 a {
@@ -14,36 +19,29 @@ a {
 }
 
 .filters {
-  padding: 30px;
+  width: 1000px;
   border-radius: 5px;
   margin-bottom: 20px;
 }
 
+#todo-page-container > div > div > p {
+  font-weight: 600;
+}
+
 .filters p {
-  font-weight: bold;
+  display: inline-block;
   margin-bottom: 10px;
 }
 
-.filters div {
-  margin-bottom: 10px;
-}
-
-.filters label {
-  margin-left: 10px;
-}
 
 .filters button {
-  background-color: #797474;
+  background-color: black;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
-  margin: 10px;
+  margin: 20px 0;
   color: white;
-}
-
-.filters button:hover {
-  background-color: #e0b1a8;
 }
 
 a:hover {
@@ -51,31 +49,42 @@ a:hover {
 }
 
 #todo-main {
-  background: url(https://images.unsplash.com/photo-1516541196182-6bdb0516ed27?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Njd8fHNpbXBsZXxlbnwwfHwwfHx8MA%3D%3D);
+  background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url(https://images.unsplash.com/photo-1482053450283-3e0b78b09a70?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
   background-color: rgb(255, 255, 255);
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
-  width: 100%;
+}
+
+#todo-page-container {
+  width: 1000px;
   min-height: 100vh;
-  margin: 0 auto;
-  padding: 20px;
+  margin: auto;
+  padding: 40px 0;
+}
+#date {
+  height: 32px;
+}
+#day, #hour{
+  width: 100px;
+  height: 32px;
+  padding-left: 10px;
 }
 
 .add-todo-btn {
-  background-color: #797474;
+  background: $color-background-redBtn;
   color: #fff;
   border: none;
   padding: 12px 24px;
   cursor: pointer;
   border-radius: 5px;
-  margin: 20px 20px;
-  margin: 20px auto;
+  margin: 40px auto;
   display: block;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
 }
 
 .add-todo-btn:hover {
-  background-color: #e0b1a8;
+  background-color: $color-hover-redBtn;
 }
 
 .add-todo-window {
@@ -83,7 +92,7 @@ a:hover {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #ffffff;
+  background-color: #CDCDCD;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -97,18 +106,24 @@ a:hover {
   position: absolute;
   top: 10px;
   right: 10px;
-  background: transparent;
+  background: $color-background-redBtn;
   border: none;
   cursor: pointer;
-  font-size: 24px;
-  color: #797474;
+  font-size: 16px;
+  color: white;
+  padding: 5px;
 }
-
+#add-todo-form > div > div.timeestimate > label:nth-child(1){
+  margin-top: 20px;
+  font-weight: 800;
+}
 .add-todo-window label {
   display: block;
   margin-bottom: 5px;
 }
-
+#todo-page-container > div > div > div.add-todo-window > h2 {
+  margin-bottom: 20px;
+}
 .add-todo-window input[type="text"],
 .add-todo-window select {
   width: calc(100% - 12px);
@@ -124,10 +139,6 @@ a:hover {
   margin-right: 10px;
 }
 
-.add-todo-window .todo-inputs div {
-  margin-bottom: 15px;
-}
-
 .add-todo-window .todo-actions {
   margin-top: 15px;
 }
@@ -137,30 +148,47 @@ a:hover {
   max-width: 500px;
 }
 
-.todo-item {
-  background-color: #fff;
-  border: 1px solid #ddd;
+#todo-page-container > div > div > div:nth-child(5){
+  text-align: right;
+}
+
+#sorting{
+  width: fit-content;
+  border: 0.5 solid black;
   border-radius: 5px;
-  padding: 10px;
-  margin-bottom: 10px;
+  padding: 3px 12px;
+
+}
+.todo-item {
+  width: 1000px;
+  background-color: white;
+  border-radius: 10px;
+  padding: 30px;  
+  margin-bottom: 20px;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 .todo-title {
   font-weight: bold;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+}
+.todo-actions {
+  text-align: right;
 }
 
 .todo-actions button {
   color: white;
   border: none;
   cursor: pointer;
-  background-color: #797474;
+  background-color: $color-background-redBtn;
   border: none;
-  padding: 10px 20px;
-  cursor: pointer;
+  padding: 6px 10px;
+  margin: 0;
   border-radius: 5px;
 }
-
+div.todo-actions > button.edit-todo-btn{
+  background: black;
+}
 .close {
   position: absolute;
   top: 10px;
