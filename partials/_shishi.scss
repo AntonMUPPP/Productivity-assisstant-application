@@ -139,7 +139,7 @@ h2.apiGreating {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
-    background-color: $color-background-redBtn; 
+    background-color: #3cb46e; 
     color: white; 
     text-align: center;
     text-decoration: none;
@@ -150,5 +150,5 @@ h2.apiGreating {
 }
 
 #myTodosBtn:hover, #myHabitsBtn:hover {
-    background-color: $color-hover-redBtn;
+    background-color: #36ce75;
 }

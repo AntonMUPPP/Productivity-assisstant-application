@@ -14,11 +14,20 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
+.ad {
+  height: 300px;
+  background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), url(https://images.unsplash.com/photo-1486551937199-baf066858de7?q=80&w=3033&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+  background-color: rgb(255, 255, 255);
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 .timer {
   border-radius: 16px;
   width: 400px;
   height: 300px;
-  background-color: #CDCDCD;
+  background-color: #efefef;
   position: absolute;
   left: 50%;
   top: 50%;
@@ -87,10 +96,6 @@ body {
 }
 
 .habit-page-container {
-  background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url(https://images.unsplash.com/photo-1482053450283-3e0b78b09a70?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
   min-height: 100vh;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   display: flex;
@@ -119,7 +124,7 @@ body {
   color: white;
   background-color: #e30303;
   align-self: center;
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
   margin: 40px 0;
 }
 .habit-option-container #add-habit-btn:hover {
@@ -179,7 +184,7 @@ body {
 }
 
 .habit {
-  background-color: white;
+  background-color: #efefef;
   width: 1000px;
   height: -moz-fit-content;
   height: fit-content;
@@ -190,7 +195,7 @@ body {
   flex-direction: column;
   gap: 24px;
   margin-bottom: 20px;
-  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
 }
 .habit h2::first-letter {
   text-transform: capitalize;
@@ -262,7 +267,7 @@ body {
   width: 400px;
   height: 300px;
   padding: 12px;
-  background-color: #CDCDCD;
+  background-color: #efefef;
   display: none;
   flex-direction: column;
   justify-content: space-evenly;
@@ -321,6 +326,15 @@ body {
   border-radius: 8px;
 }
 
+#todo-main > div:nth-child(1) {
+  height: 300px;
+  background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), url(https://images.unsplash.com/photo-1548248823-ce16a73b6d49?q=80&w=2188&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+  background-color: rgb(255, 255, 255);
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 .my-todos {
   margin: auto;
   display: flex;
@@ -370,14 +384,6 @@ a:hover {
   text-decoration: underline;
 }
 
-#todo-main {
-  background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url(https://images.unsplash.com/photo-1482053450283-3e0b78b09a70?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
-  background-color: rgb(255, 255, 255);
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
 #todo-page-container {
   width: 1000px;
   min-height: 100vh;
@@ -396,7 +402,7 @@ a:hover {
 }
 
 .add-todo-btn {
-  background: #e30303;
+  background: linear-gradient(#F3A39A, #cf6f63);
   color: #fff;
   border: none;
   padding: 12px 24px;
@@ -408,7 +414,7 @@ a:hover {
 }
 
 .add-todo-btn:hover {
-  background-color: rgb(253, 87, 87);
+  background: #cf6f63;
 }
 
 .add-todo-window {
@@ -490,11 +496,10 @@ a:hover {
 
 .todo-item {
   width: 1000px;
-  background-color: white;
+  background-color: #efefef;
   border-radius: 10px;
   padding: 30px;
-  margin-bottom: 20px;
-  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
+  margin-bottom: 32px;
 }
 
 .todo-title {
@@ -510,7 +515,7 @@ a:hover {
   color: white;
   border: none;
   cursor: pointer;
-  background-color: #e30303;
+  background: linear-gradient(#F3A39A, #cf6f63);
   border: none;
   padding: 6px 10px;
   margin: 0;
@@ -808,7 +813,7 @@ h2.apiGreating {
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
-  background-color: #e30303;
+  background-color: #3cb46e;
   color: white;
   text-align: center;
   text-decoration: none;
@@ -819,5 +824,5 @@ h2.apiGreating {
 }
 
 #myTodosBtn:hover, #myHabitsBtn:hover {
-  background-color: rgb(253, 87, 87);
+  background-color: #36ce75;
 }/*# sourceMappingURL=styles.css.map */
