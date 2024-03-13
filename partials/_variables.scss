@@ -1,5 +1,5 @@
 $canvas:white;
-$primary-bg-color:#CDCDCD;
+$primary-bg-color:#efefef;
 $Secondary-bg-color:orange;
 
 $Text-primary:black;
@@ -18,6 +18,10 @@ $color-hover-NiceToHaveBtn: lightgray;
 $color-background-redBtn: #e30303;
 $color-text-redBtn:white;
 $color-hover-redBtn: rgb(253, 87, 87);
+
+$color-background-todoBtn:linear-gradient(#F3A39A, #cf6f63);
+$color-text-todoBtn:white;
+$color-hover-todoBtn: #cf6f63;
 
 $h1-fontsize:2rem;
 $h2-fontsize:1.5rem;
