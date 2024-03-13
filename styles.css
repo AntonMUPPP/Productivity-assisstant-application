@@ -195,7 +195,9 @@ body {
   flex-direction: column;
   gap: 24px;
   margin-bottom: 20px;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+}
+.habit:hover {
+  box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.3);
 }
 .habit h2::first-letter {
   text-transform: capitalize;
@@ -410,7 +412,7 @@ a:hover {
   border-radius: 5px;
   margin: 40px auto;
   display: block;
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
 }
 
 .add-todo-btn:hover {
@@ -500,6 +502,10 @@ a:hover {
   border-radius: 10px;
   padding: 30px;
   margin-bottom: 32px;
+}
+
+.todo-item:hover {
+  box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.3);
 }
 
 .todo-title {
@@ -831,4 +837,5 @@ h2.apiGreating {
 
 #myTodosBtn:hover, #myHabitsBtn:hover {
   background-color: #36ce75;
+  transition: 1s;
 }/*# sourceMappingURL=styles.css.map */
