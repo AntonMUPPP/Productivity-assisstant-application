@@ -740,7 +740,7 @@ nav > div:nth-child(2) > button:hover {
 }
 
 .main-inloggning {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.9);
   display: flex;
   flex-direction: column;
   align-items: center;
