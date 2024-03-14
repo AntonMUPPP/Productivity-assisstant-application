@@ -195,7 +195,9 @@ body {
   flex-direction: column;
   gap: 24px;
   margin-bottom: 20px;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+}
+.habit:hover {
+  box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.3);
 }
 .habit h2::first-letter {
   text-transform: capitalize;
@@ -410,7 +412,7 @@ a:hover {
   border-radius: 5px;
   margin: 40px auto;
   display: block;
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
 }
 
 .add-todo-btn:hover {
@@ -502,6 +504,10 @@ a:hover {
   margin-bottom: 32px;
 }
 
+.todo-item:hover {
+  box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.3);
+}
+
 .todo-title {
   font-weight: bold;
   margin-bottom: 10px;
@@ -591,18 +597,18 @@ div.todo-actions > button.edit-todo-btn {
 
 .calendar-saveBtn {
   width: 100%;
-  margin-top: 10px;
+  margin-top: 20px;
   background-color: gray;
-  color: black;
+  color: white;
   padding: 10px 20px;
-  border: 1px solid #353836;
+  border: none;
   /* Товщина, колір та стиль рамки */
   cursor: pointer;
   border-radius: 10px;
 }
 
 .calendar-saveBtn:hover {
-  background-color: lightgray;
+  background-color: #afafaf;
 }
 
 input[type=text],
@@ -612,21 +618,27 @@ input[type=datetime-local] {
 
 .event-list-container {
   margin: 20px auto;
-  padding: 30px;
+  padding: 20px;
   width: 100%;
   margin-bottom: 10px;
 }
 
 .event-list-container li.future-event {
-  background-color: rgb(255, 251, 254);
+  list-style: none;
+  background-color: rgb(239, 239, 239);
   width: auto;
   padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 8px;
 }
 
 .event-list-container li.past-event {
+  list-style: none;
   background-color: #a4a7a6;
   width: auto;
   padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 8px;
 }
 
 .event-name {
@@ -728,7 +740,7 @@ nav > div:nth-child(2) > button:hover {
 }
 
 .main-inloggning {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.9);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -825,4 +837,5 @@ h2.apiGreating {
 
 #myTodosBtn:hover, #myHabitsBtn:hover {
   background-color: #36ce75;
+  transition: 1s;
 }/*# sourceMappingURL=styles.css.map */
